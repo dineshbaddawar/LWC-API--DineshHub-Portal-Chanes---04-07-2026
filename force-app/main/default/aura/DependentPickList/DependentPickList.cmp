@@ -1,0 +1,43 @@
+<aura:component controller="AuraCompUtilityClas" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="listControllingValues" type="List" default="[]" description="To Store Controlled Field Values"/>
+    
+    <aura:attribute name="listDependingValues" type="List" default="['-- None --']" description="To Store Dependent Field Values"/>
+    
+    <aura:attribute name="depnedentFieldMap" type="map" description="map to store dependent values with controlling value"/>
+    
+    <aura:attribute name="DisabledDependentFld" type="boolean" default="true"/>    
+    
+    <aura:attribute name="objDetail" type="contact" default="{'sobjectType' : 'contact'}"/>
+    
+    <aura:attribute name="controllingFieldAPI" type="string" default="Country__c" description="store field API name of Controller field"/>
+    
+    <aura:attribute name="dependingFieldAPI" type="string" default="City__c" description="store field API name of dependent field"/>
+    
+    <lightning:layoutItem size="12" padding="around_small">
+        <lightning:select name="controllerFld"
+                          value="{!v.objDetail.Country__c}"
+                          label="Country"
+                          onchange="{!c.onControllerFieldChange}">
+            <aura:iteration items="{!v.listControllingValues}" var="val">
+                <option value="{!val}">{!val}</option>
+            </aura:iteration>
+        </lightning:select>
+    </lightning:layoutItem>
+    
+    <lightning:layoutItem size="12" padding="around_small">
+        <lightning:select name="dependentFld"
+                          value="{!v.objDetail.City__c}"
+                          label="City"
+                          disabled="{!v.DisabledDependentFld}">
+            <aura:iteration items="{!v.listDependingValues}" var="val">
+                <option value="{!val}">{!val}</option>
+            </aura:iteration>
+        </lightning:select>
+    </lightning:layoutItem>
+    
+    
+</aura:component>

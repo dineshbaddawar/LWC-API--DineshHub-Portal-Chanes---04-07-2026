@@ -1,0 +1,17 @@
+<template>
+
+    <b style="background-color:blue">
+        Component Event Demo - Parnet to Child Communication
+    </b>
+     <br/><br/>
+<lightning-card title="Parent Component" variant="narrow">
+    <c-componenteventchildcomp onchildclick={handleChildClick}></c-componenteventchildcomp>
+
+    <b>
+        Message From Child  : {childMessage}
+    </b>
+    <br/><br/>
+    <lightning-button variant="brand" label="Clear Message" onclick={handleClickParent}  class="slds-m-left_x-small">
+    </lightning-button>
+  </lightning-card>
+</template>

@@ -1,0 +1,26 @@
+<template>
+     <lightning-card title="Search Accounts">
+         <lightning-layout>
+             <lightning-layout-item size="6">
+                 <!-- Displaying Accounts. -->
+                 <div class="slds-p-left_medium">
+                     <lightning-input placeholder="Enter Account Name" onchange={changeSearchText}></lightning-input>
+                     <br/>
+                     
+                     <!-- To display accounts if list is not null-->
+                     <template for:each={lstAccount.data} for:item="acc">
+                         <div key={acc.Id} class="slds-p-around_medium lgc-bg">
+                             <lightning-tile label={acc.Name} type="media">
+                                 <lightning-icon slot="media" icon-name="standard:groups"></lightning-icon>
+                                 <p class="slds-truncate">
+                                     <lightning-formatted-text value={acc.AccountNumber}></lightning-formatted-text>
+                                 </p>
+                             </lightning-tile>
+                         </div>
+                     </template>
+                     
+                 </div>
+             </lightning-layout-item>
+         </lightning-layout>
+     </lightning-card>
+ </template>

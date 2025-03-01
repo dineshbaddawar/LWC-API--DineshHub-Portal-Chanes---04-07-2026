@@ -1,0 +1,38 @@
+<aura:component>
+    <aura:attribute name="selTabId" type="String" default="tab1" />
+    <lightning:card class="slds-p-around_small" title="Back and Next Tab Button">
+    <div aura:id="data-entry">
+        <lightning:tabset variant="default" selectedTabId="{!v.selTabId}" >
+            <lightning:tab  label="Development" aura:id="tab1" tabindex="1" id="tab1" title="Development">
+                <p><b>Apex Trigger</b></p>
+                <p> <b>Apex Class</b></p>
+                <p><b>Asynchronous Class</b></p>
+            </lightning:tab>
+            
+            <lightning:tab label="Configuration" aura:id="tab2" tabindex="2" id="tab2" title="Configuration">
+                
+                <p>  <b>Lightnig Flow</b></p>
+                <p><b>Reports and Dashboard</b></p>
+                <p>   <b>Chain Set</b></p>
+            </lightning:tab>  
+            
+            <lightning:tab label="Service Cloud" aura:id="tab3" tabindex="3" id="tab3" title="Service Cloud">
+                <p>  <b>Lightning Service Console</b></p>
+                <p><b>Omni-Channel Routing</b></p>
+                <p>   <b>Skill Based Routing</b></p>
+            </lightning:tab> 
+        </lightning:tabset>
+    </div>
+    
+    <div class="slds-clearfix">
+        <div class="slds-float_left">
+            <!--disabled the back button on first Tab-->   
+            <lightning:button disabled="{!v.selTabId == 'tab1'}" variant="brand" label="Back" onclick="{!c.back}" />
+        </div>
+        <div class="slds-float_right">
+            <!--disabled the back button on last Tab-->
+            <lightning:button variant="success" disabled="{!v.selTabId == 'tab3'}" label="Next" onclick="{!c.next}" />
+        </div>
+    </div>
+        </lightning:card>
+</aura:component>

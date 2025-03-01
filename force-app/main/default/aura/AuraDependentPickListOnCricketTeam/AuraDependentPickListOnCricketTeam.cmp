@@ -1,0 +1,30 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="CricketTeam" type="List"/>
+    <aura:attribute name="dependentPlayer" type="Object"/>
+    <aura:attribute name="temaPlayerList" type="List"/>
+    <div class="dinesh">
+    <lightning:card title="Dependent PickList For Cricket Team" iconName="standard:contact">
+        <div class="slds-container--center slds-container--small">
+            <div class="colori23">
+     <lightning:select name="parentPickList" label="Team" aura:id="playerId" onchange="{!c.getTeamPlayer}">
+                <option value="">None</option>
+                <aura:iteration items="{!v.CricketTeam}" var="p">
+                    <option value="{!p.value}">{!p.text}</option>
+                </aura:iteration>
+            </lightning:select>
+            </div>
+            
+    <div class="colori23">
+            <lightning:select name="dependentPlayer" label="Player Name">
+                <option value="">None</option>
+                <aura:iteration items="{!v.temaPlayerList}" var="d">
+                    <option value="{!d.value}">{!d.text}</option>
+                </aura:iteration>
+            </lightning:select>
+          </div>
+            
+            </div>
+    </lightning:card>
+        </div>
+</aura:component>

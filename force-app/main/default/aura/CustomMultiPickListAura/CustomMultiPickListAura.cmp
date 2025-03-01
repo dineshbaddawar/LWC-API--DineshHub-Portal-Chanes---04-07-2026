@@ -1,0 +1,16 @@
+<aura:component controller="AuraCompUtilityClas" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="picList" type="List" default="[]"/>
+    <aura:attribute name="selpicList" type="List" default="[]"/>
+    
+    <div calss="slds-m-around_xx-large">
+        <lightning:dualListbox aura:id="selpicvalue"
+                               name="Pick"
+                               label="Selected Pick"
+                               sourceLabel="Available Pick"
+                               options="{!v.picList}"
+                               value="{!v.selpicList}"
+                               onchange="{!c.handlepickChange}"/>
+        <lightning:button variant="brand" label="Save" onclick="{!c.getSelectedList}"/>
+    </div>
+</aura:component>

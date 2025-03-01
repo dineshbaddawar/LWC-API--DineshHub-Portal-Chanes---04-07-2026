@@ -1,0 +1,46 @@
+<template>
+	<div style="background: ghostwhite;">
+	<div class="slds-text-align_center slds-m-around_medium" style="padding-top:15px">
+		<h1>New Opportunity</h1>
+	</div>
+
+	<template lwc:if={showOpportunityRecordPage}>
+	<div class="slds-box slds-m-around_medium">
+		<lightning-record-edit-form object-api-name="Opportunity" onsuccess={handleSuccess}  onerror={handleError} onsubmit={handleSubmit}>
+			<lightning-messages></lightning-messages>
+            <div class="slds-grid slds-wrap">
+                <template for:each={oppFiedlSet} for:item="field">
+                    <div key={field.key} class="slds-col slds-size_6-of-12">
+                        <span>
+                            <lightning-input-field onchange={onchageInputOpp}  field-name={field.value}></lightning-input-field>
+                        </span>
+                    </div>
+                </template>
+            </div>
+		</lightning-record-edit-form>
+	</div>
+</template>
+
+<template lwc:if={showAccountAddress}>
+	<div class="slds-box slds-m-around_small">
+          <c-custom-address-l-w-c record-id={selectedAccountId} opprecordid={opprecordid}></c-custom-address-l-w-c>
+	</div>
+</template>
+
+
+	<!-- Save and Cancel buttons -->
+	<div class="slds-text-align_center slds-m-around_medium" style="padding-bottom:15px">
+		
+		<!-- <lightning-button class="slds-m-right_small" label="Cancel" onclick={closeAction} ></lightning-button>
+		<template lwc:if={showSubmitButton}>
+		<lightning-button class="slds-m-right_small" onclick={handleSubmitButtonClick} variant="brand" label="Save">	</lightning-button>
+	   </template> -->
+	  
+	   <template lwc:if={showNextButton}>
+		<lightning-button class="slds-m-right_small" label="Cancel" onclick={closeAction} ></lightning-button>
+		<lightning-button class="slds-m-right_small" type="submit" onclick={NextButtonClick} variant="brand" label="Next" ></lightning-button>
+	  </template>
+	</div>
+
+</div>
+</template>

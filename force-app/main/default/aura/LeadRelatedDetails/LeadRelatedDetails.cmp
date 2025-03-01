@@ -1,0 +1,37 @@
+<aura:component controller="UtilityClass" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+    <aura:attribute name="leadEmailRec" type="String"/>
+    <aura:attribute name="leadPhoneRec" type="String"/>
+    <aura:attribute name="ContactRecordData" type="Contact[]"/>
+    <aura:attribute name="OpportunityRecordData" type="Opportunity[]"/>
+    <aura:attribute name="AccountRecordData" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" access="global"/>
+    
+    <aura:attribute name="mycontactcolumns" type="List"/>
+    <aura:attribute name="myopportunitycolumns" type="List"/>
+    <aura:attribute name="myaccountcolumns" type="List"/>
+    
+    <lightning:card  class="slds-p-around_small">
+        <h2 style="text-align: center;font-size: 25px;background: darkkhaki;">Aura Component Custom</h2>
+   <div class="slds-p-around_medium slds-box slds-theme_default">
+    <lightning:card title="Contact Record Based on Lead Email OR Phone" iconName="standard:contact">
+        <lightning:datatable data="{!v.ContactRecordData}" columns="{!v.mycontactcolumns}" keyField="id" hideCheckboxColumn="true"/>
+    </lightning:card>
+    </div> 
+    
+     <div class="slds-p-around_medium slds-box slds-theme_default">
+    <lightning:card title="Opportunity Record Based on Lead Email OR Phone" iconName="standard:opportunity">
+        <lightning:datatable data="{!v.OpportunityRecordData}" columns="{!v.myopportunitycolumns}" keyField="id" hideCheckboxColumn="true"/>
+    </lightning:card>
+    </div>
+    
+   
+     <div class="slds-p-around_medium slds-box slds-theme_default">
+    <lightning:card title="Account Record Based on Lead Email OR Phone" iconName="standard:account">
+        <lightning:datatable data="{!v.AccountRecordData}" columns="{!v.myaccountcolumns}" keyField="id" hideCheckboxColumn="true"/>
+    </lightning:card>
+    </div>  
+   </lightning:card>
+    
+    
+</aura:component>

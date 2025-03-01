@@ -1,0 +1,34 @@
+.Row {
+    display: table;
+    width: 100%; /*Optional*/
+   
+    table-layout: fixed; /*Optional*/
+   
+}
+ .Column {
+    display: table-cell;
+    background-color: slategray; /*Optional*/
+   
+    
+}
+
+ .slds-modal__container{
+    width: 100% !important;
+    max-width: fit-content;
+	background: radial-gradient(black, transparent);
+	margin-bottom: 0px;
+} 
+
+ .dot {
+ 
+  background-color: aquamarine;
+ 
+  display: inline-block;
+  text-align:center;
+    
+}
+
+ .slds-avatar__initials{
+    font-family: cursive;
+    font-size: 25px;
+}

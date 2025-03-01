@@ -1,0 +1,10 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" controller="AuraCompUtilityClas" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="AccountId" type="String"/>
+    <aura:attribute name="conList" type="Contact[]"/>
+    <aura:attribute name="contactColumns" type="List"/>
+    
+    <lightning:card title="Accounts Related Contact" iconName="standard:contact">
+    <lightning:datatable data="{!v.conList}" columns="{!v.contactColumns}" keyField="id"  hideCheckboxColumn="true"/>
+    </lightning:card>
+</aura:component>

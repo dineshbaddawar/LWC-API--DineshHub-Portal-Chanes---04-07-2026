@@ -1,0 +1,20 @@
+<aura:component controller="AuraComponentLead" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="conEmail" type="String"/>
+    <aura:attribute name="conPhone" type="String"/>
+    <aura:attribute name="AccountidforOpp" type="String"/>
+    
+    <aura:attribute name="OppRecordData" type="Opportunity[]"/>
+    <aura:attribute name="oppColumns" type="List"/>
+    <aura:attribute name="AccRecordData" type="Account[]"/>
+    <aura:attribute name="accColumns" type="List"/>
+    
+    <lightning:card title="Opportunity Record Based on Contact Email And Phone" iconName="standard:opportunity">
+    <lightning:datatable data="{!v.OppRecordData}" columns="{!v.oppColumns}" keyField ="id" hideCheckboxColumn="true"/>
+    </lightning:card>
+    
+   <lightning:card title="Account Related to Opportunity" iconName="standard:account">
+    <lightning:datatable data="{!v.AccRecordData}" columns="{!v.accColumns}" keyField ="id" hideCheckboxColumn="true"/>
+    </lightning:card>
+    
+</aura:component>

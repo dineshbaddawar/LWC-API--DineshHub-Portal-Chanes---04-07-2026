@@ -1,0 +1,26 @@
+<aura:component controller="UtilityClass" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInIt}"/>
+    <aura:attribute name="accountOption" type="List"/>
+    <aura:attribute name="selectedAccount" type="String"/>
+    <aura:attribute name="contactOption" type="List"/>
+    <aura:attribute name="selectedContact" type="String"/>
+    
+    <div class="slds-p-around_x-small">
+        <lightning:card title="Account Related Contact Dependent List View" class="slds-p-around_medium" iconName="standard:account">
+            <lightning:select name="acc" label="Select a Account:" aura:id="acc" value="{!v.selectedAccount}" onchange="{!c.changeAction}">
+                 <option value="">--None--</option>
+                <aura:iteration items="{!v. accountOption}" var ="opt">
+                    <option text="{!opt.Name}" value="{!opt.Id}" selected="{!opt.selected}"/>
+                </aura:iteration>  
+            </lightning:select> <br/>
+            
+            <lightning:select name="con" label="Select an Contact" aura:id="con" value="{!v.selectedContact}" onchange="{!c.contactAction}">
+                <option value="">--None--</option>
+                <aura:iteration items="{!v.contactOption}" var="opt">
+                    <option text="{!opt.Name}" value="{!opt.Id}" selected="{!opt.selected}"/>
+                </aura:iteration>
+            </lightning:select>
+        </lightning:card>
+        
+    </div>
+</aura:component>

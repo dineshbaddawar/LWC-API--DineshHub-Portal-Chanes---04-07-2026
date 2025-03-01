@@ -1,0 +1,9 @@
+<template>
+     <template if:true={showFolderItem}>
+          <b>Document Files</b>
+          <c-folder-item item={folderStructure} onfolderclick={handleFolderClick}></c-folder-item>
+      </template>
+      <template if:false={showFolderItem}>
+          No folders found.
+      </template>
+</template>

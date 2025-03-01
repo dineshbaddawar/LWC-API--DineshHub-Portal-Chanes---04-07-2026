@@ -1,0 +1,26 @@
+<aura:component  controller="UtilityClass">
+    <aura:handler name="init" value="{!this}" action="{!c.getOppData}"/>
+    <aura:attribute name="oppList" type="list"/>
+    
+    <div class="slds">
+    <table class="slds-table slds-table--striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>StageName</th>
+            <th>CloseDate</th>
+            </tr>
+        </thead>
+          <tbody>
+            <aura:iteration items="{!v.oppList}" var = "opp">
+            <tr>
+                <td>{!opp.Name}</td>
+                <td>{!opp.StageName}</td>
+                <td>{!opp.CloseDate}</td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+        </table>
+      
+    </div>
+</aura:component>

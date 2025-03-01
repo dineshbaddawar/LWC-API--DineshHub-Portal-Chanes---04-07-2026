@@ -1,0 +1,49 @@
+<aura:component controller="AuraCompUtilityClas" Implements="flexipage:availableForRecordHome,force:hasRecordId">
+<!-- init aura:handler action[doInit] atuo call on component load -->
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+<!-- 1."childRecordList" attribute store the list of child record  -->
+<aura:attribute name="childRecordList" type="List"/>
+
+<!-- Using a datatable from the LDS -->
+<div class="slds-m-around--x-small">
+     <div class="slds-grid slds-grid--align-end slds-m-around--x-small">
+          <button class="slds-button slds-button--brand" onclick="{!c.addSelected}">ADD RECORD</button>
+     </div>
+
+     <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+
+         <thead>
+          <tr class="slds-text-heading--label">
+               <th scope="col">
+                    <div class="slds-truncate" title="Name">Name</div>
+               </th>
+               <th scope="col">
+                    <div class="slds-truncate" title="Email">Email</div>
+               </th>
+               <th scope="col">
+                    <div class="slds-truncate" title="Select">Select</div>
+               </th>
+          </tr>
+         </thead> 
+
+         <tbody>
+          <!-- Iterate all child record list in table format -->
+          <aura:iteration items="{!v.childRecordList}" var="rec">
+               <tr>
+                    <td>
+                         <div class="slds-truncate" title="{!rec.Name}">{!rec.Name}</div>
+                    </td>
+                    <td>
+                         <div class="slds-truncate" title="{!rec.Email}">{!rec.Email}</div>
+                    </td>
+                    <td>
+                         <ui:inputCheckbox aura:id="checkBox" text="{!rec.Id}"/>
+                    </td>
+               </tr>
+          </aura:iteration>
+         </tbody>
+
+     </table>
+</div>
+</aura:component>

@@ -1,0 +1,10 @@
+<aura:component controller="AuraCompUtilityClas" >
+    <aura:attribute name="keyList" type="List"/>
+    <aura:attribute name="playerMap" type="Map"/>
+    
+    <ui:button label="Iterate Map" press="{!c.getPlayerMap}"/>
+    <!--Iterate the MapValue-->
+    <aura:iteration items="{!v.keyList}" var="key">
+        <c:MapValuesInAuraChild map="{!v.playerMap}" key="{!key}"/>
+    </aura:iteration>
+</aura:component>

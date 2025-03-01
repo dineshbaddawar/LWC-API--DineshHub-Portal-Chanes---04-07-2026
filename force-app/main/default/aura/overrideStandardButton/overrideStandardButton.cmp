@@ -1,0 +1,25 @@
+<aura:component implements="lightning:actionOverride" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="newAccount" type="Object"/>
+    <aura:attribute name="targetNewAccount" type="Object"/>
+    <aura:attribute name="newAccountError" type="String"/>
+    
+    <!-- Using record Data -->
+    <force:recordData
+                      aura:id="accountRecordCReator"
+                      fields="Name,AccountNumber,Phone"
+                      targetFields="{!v.targetNewAccount}"
+                      targetRecord="{!v.newAccount}"
+                      targetError="{!v.newAccountError}"/>
+    
+    <lightning:card title="Custom Override Standard Button" iconName="action:new_account">
+        <div class="slds-p-horizontal--small">
+            <lightning:input label="Name" value="{!v.targetNewAccount.Name}"/>
+            <lightning:input label="Account Number" value="{!v.targetNewAccount.AccountNumber}"/>
+            <lightning:input label="Account Phone" value="{!v.targetNewAccount.Phone}"/>
+             <div class="slds-m-around_medium">
+                 <lightning:button label="Save Account" variant="brand" onclick="{!c.saveAccount}"/>
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>

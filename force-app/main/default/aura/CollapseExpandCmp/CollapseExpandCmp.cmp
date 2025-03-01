@@ -1,0 +1,19 @@
+<aura:component >
+    <aura:attribute name="header" type="string"/>
+    <aura:attribute name="body" type="Aura.Component[]"/>
+    <aura:attribute name="collapaseText" type="String" default="ShowPage"/>
+    
+    <div>
+        <div class="Message">
+            <div style="width:90%; float:left">
+                {!v.header}
+            </div>
+            <div class="expandCollapase" onclick="{!c.ToggleCollapse}">
+                {!v.collapaseText}
+            </div>
+        </div>
+        <div class="container hide" aura:id="containerCollapsable">
+            {!v.body}
+        </div>
+    </div>
+</aura:component>

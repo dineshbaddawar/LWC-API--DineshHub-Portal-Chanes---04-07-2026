@@ -1,0 +1,10 @@
+<aura:component controller="UtilityClass" >
+    <aura:handler name="init" value="{!this}" action="{!c.getContactRecord}"/>
+    <aura:attribute name="contactList" type="Contact[]"/>
+    <aura:attribute name="columndata" type="Object[]"/>
+    <lightning:datatable data="{!v.contactList}"
+                                    columns="{!v.columndata}"
+                                   keyField = "id"
+                          hideCheckboxColumn="false" />
+                                      
+</aura:component>

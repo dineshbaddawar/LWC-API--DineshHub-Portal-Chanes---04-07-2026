@@ -1,0 +1,50 @@
+<aura:component controller="AuraCompUtilityClas" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="accList" type="Account[]"/>
+    
+    <lightning:card title="Account Related Contact Using SOQL subquery in Aura Comp" class="slds-p-around_medium">
+        <!-- <ul>
+            <aura:iteration items="{!v.accList}" var="acc">
+                <li type="dice">AccountName : {!acc.Name}</li>
+                <ol>
+                    <aura:iteration items="{!acc.Contacts}" var="con" indexVar="index">
+                        <li>contact {!index + 1} Name : {!con.Name}</li>
+                    </aura:iteration>
+                </ol>
+                <hr/>
+            </aura:iteration>
+        </ul> -->
+        
+        <br/>
+        
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+            
+            <thead>
+                <tr class="slds-text-title--caps">
+                    <th scope="col">
+                        <div class="slds-truncate" title="Name"> Account Name</div>
+                    </th>
+                </tr>
+                
+            </thead>
+            
+            <tbody>
+                <aura:iteration items="{!v.accList}" var="acc">
+                    <tr>
+                        <th scope="row">
+                            <div class="slds-truncate" title="{!acc.Name}">{!acc.Name}</div>
+                            <aura:iteration items="{!acc.Contacts}" var="con">
+                                <th scope="row">
+                                    <div class="slds-truncate" title="{!con.Name}"> Contact : {!con.Name}</div>
+                                </th>
+                            </aura:iteration>
+                        </th>
+                        
+                    </tr>
+                </aura:iteration>
+            </tbody>
+            
+        </table>
+        
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,63 @@
+<template>
+    <!-- <div style="width:60%" > -->
+    <!-- <h2 style=" font-size: 2rem;text-align: center;font-family: serif;">Leave Application </h2> -->
+  <lightning-quick-action-panel header="Leave Application" >
+
+    <lightning-card class="slds-align_absolute-center" style="width:100%">
+        <!-- <lightning-modal-header label="">
+          <h2 style=" font-size: 2rem;text-align: center;font-family: serif;">Leave Application </h2>
+        </lightning-modal-header> -->
+    
+    <lightning-layout class="slds-grid">
+            <lightning-layout-item padding="around-small">
+            <div  >
+                <p class="slds">
+                    <!-- <c-custom-lookuplwc onprogressvaluechange={hanldeProgressValueChange} ></c-custom-lookuplwc> -->
+                    <c-custom-Lookup-L-W-C onprogressvaluechange={hanldeProgressValueChange} ></c-custom-Lookup-L-W-C>
+                </p>
+                <br/>
+        <lightning-combobox name="LeaveType" label="Leave Type" value={value} options={leaveTypeList} onchange={HandleChangeLeaveType}> </lightning-combobox> <br/>
+        <div class="slds-grid">
+        <div class="slds-col slds-size_6-of-12" >
+                <span style="margin-bottom:3rem;">
+            <lightning-input type="date" name="startDate" label="From" onchange={HandleChangedate}></lightning-input>
+            </span>
+        </div>
+            <div class="slds-p-left_small slds-col slds-size_6-of-12" >
+                <lightning-input type="date" name="endDate" label="To" onchange={HandleChangedate}></lightning-input>
+            </div>
+        </div>
+    <br/>
+    
+        <template lwc:if={showTable}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped slds-box">
+        <template for:each={dateList} for:item="acc" for:index="index">
+            <tr class="slds-hint-parent" key = {acc.index}>
+            <td> <b> {acc.selectedDate}</b> </td>
+            <td> 
+                <lightning-combobox data-index={index}  name={acc.index} value={acc.leavePlan} options={options} onchange={handleChangeDays} ></lightning-combobox>
+                 </td>
+            </tr>
+    </template>
+    </table>    
+    </template>
+    
+     <br/>
+     <template lwc:if={showTable}>
+     <div style="width: 100%; padding: 3px; border: 1px solid gray; margin: 0;"><b>Leave Days : &nbsp;  &nbsp;   &nbsp;   &nbsp;   &nbsp;  {totalDayCount}</b></div>
+     <br/>
+     </template>
+        <lightning-textarea name="leavedescription" label="Reason for Leave"    onchange={HandleChangeLeaveReason}></lightning-textarea> 
+    </div>
+    </lightning-layout-item>
+    </lightning-layout>
+    <br/>
+    <div slot="footer" >
+            <div class="slds-align_absolute-center">
+                <lightning-button type="sumbit" variant="success" label="Sumbit" onclick={HandleSumbit} ></lightning-button>    
+            </div> 
+        </div>
+    </lightning-card>
+    </lightning-quick-action-panel>
+    <!-- </div> -->
+    </template>

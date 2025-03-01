@@ -1,0 +1,444 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="AuraCompUtilityClas" >
+	<aura:handler name="init" value="{!this}" action="{!c.doaction}"/>
+    <aura:attribute name="contactCount" type="Integer"/>
+    <aura:attribute name="OpportunityCount" type="Integer"/>
+    <aura:attribute name="caseCount" type="Integer"/>
+    <aura:attribute name="leadount" type="Integer"/>
+    <aura:attribute name="Sobjectdata" type="Sobject"/>
+    
+    <aura:attribute name="isModalOpenContact" type="boolean" default="false"/>
+    <aura:attribute name="isModalOpenOpportunity" type="boolean" default="false"/>
+    <aura:attribute name="isModalOpenCase" type="boolean" default="false"/>
+    <aura:attribute name="isModalNewLead" type="boolean" default="false"/>
+    
+    <aura:attribute name="contactLiist" type="List"/>
+     <aura:attribute name="opportunityList" type="List"/>
+    <aura:attribute name="caseList" type="List"/>
+    <aura:attribute name="leadList" type="List"/>
+    
+    <div style="align:center;margin-left:5px;">
+    <lightning:card>
+            <div class="slds-modal__content slds-app-launcher__content" id="modal-content-id-1" style="width:98%; height:20%; align:center;padding-left:30px;">
+                <div class="slds-section slds-is-open">
+                    
+                    <div aria-hidden="false" class="slds-section__content" id="appsContent">
+                        <div class="slds-assistive-text" id="drag-live-region" aria-live="assertive"></div>
+                        <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                            <li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-4">
+                                <div draggable="true" class="slds-app-launcher__tile slds-text-link_reset slds-is-draggable">
+                                    <div class="slds-app-launcher__tile-figure">
+                                        <span class="slds-avatar slds-avatar_large">
+                                            <abbr class="slds-avatar__initials slds-icon-custom-27" >{!v.contactCount}</abbr>
+                                        </span>
+                                        <div class="slds-m-top_xxx-small">
+                                            <button class="slds-button slds-button_icon" aria-pressed="false" title="Reorder">
+                                                <span class="slds-assistive-text">Reorder</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="slds-app-launcher__tile-body" style="font-size:1.2rem;">
+                                      <lightning:button variant="base"  label="Contact" onclick="{! c.getContactList }"/>
+                                        <p> </p>
+                                        <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide" role="tooltip" id="help-0" style="position:absolute;top:80px;right:30px">
+                                            <div class="slds-popover__body"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-4">
+                                <div draggable="true" class="slds-app-launcher__tile slds-text-link_reset slds-is-draggable">
+                                    <div class="slds-app-launcher__tile-figure">
+                                        <span class="slds-avatar slds-avatar_large">
+                                            <abbr class="slds-avatar__initials slds-icon-custom-59" >{!v.OpportunityCount}</abbr>
+                                        </span>
+                                        <div class="slds-m-top_xxx-small">
+                                            <button class="slds-button slds-button_icon" aria-pressed="false" title="Reorder">
+                                                
+                                                <span class="slds-assistive-text">Reorder</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="slds-app-launcher__tile-body" style="font-size:1.2rem;">
+                                        <lightning:button variant="base" label="Opportunity" onclick="{! c.getOpportunityList }"/>
+
+                                        <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide" role="tooltip" id="help-1" style="position:absolute;top:80px;right:30px">
+                                            <div class="slds-popover__body"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-4">
+                                <div draggable="true" class="slds-app-launcher__tile slds-text-link_reset slds-is-draggable">
+                                    <div class="slds-app-launcher__tile-figure">
+                                        <span class="slds-avatar slds-avatar_large">
+                                            <abbr class="slds-avatar__initials slds-icon-custom-10" >{!v.caseCount}</abbr>
+                                        </span>
+                                        <div class="slds-m-top_xxx-small">
+                                            <button class="slds-button slds-button_icon" aria-pressed="false" title="Reorder">
+                                                
+                                                <span class="slds-assistive-text">Reorder</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="slds-app-launcher__tile-body" style="font-size:1.2rem;">
+                                        
+                                        <lightning:button variant="base" label="Case" onclick="{! c.callCaseMethod }"/>
+                                        <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide" role="tooltip" id="help-2" style="position:absolute;top:80px;right:30px">
+                                            <div class="slds-popover__body"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            <li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-4">
+                                <div draggable="true" class="slds-app-launcher__tile slds-text-link_reset slds-is-draggable">
+                                    <div class="slds-app-launcher__tile-figure">
+                                        <span class="slds-avatar slds-avatar_large">
+                                            <abbr class="slds-avatar__initials slds-icon-custom-6" >{!v.leadount}</abbr>
+                                        </span>
+                                        <div class="slds-m-top_xxx-small">
+                                            <button class="slds-button slds-button_icon" aria-pressed="false" title="Reorder">
+                                                
+                                                <span class="slds-assistive-text">Reorder</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="slds-app-launcher__tile-body" style="font-size:1.2rem;">
+                                      <lightning:button variant="base" label="Lead" onclick="{! c.callNewLead }"/>  
+                                        <div class="slds-popover slds-popover_tooltip slds-nubbin_top-right slds-hide" role="tooltip" id="help-3" style="position:absolute;top:80px;right:30px">
+                                            <div class="slds-popover__body"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        
+        
+    </lightning:card>
+    </div>   
+    
+    
+    <aura:if isTrue="{!v.isModalOpenContact}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header">
+                   
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Contact List</h2>
+                </header>
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <table class="slds-table slds-table_bordered ">
+                        <thead>
+                            <tr class="slds-line-height_reset slds-text-title_caps">
+                                 <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Name">
+                                        S.No
+                                    </div>
+                                </th>
+                                <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Name">
+                                        Name
+                                    </div>
+                                </th>
+                                
+                                
+                                <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Email">
+                                        Email
+                                    </div>
+                                </th >
+                                 <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Email">
+                                        Phone
+                                    </div>
+                                </th >
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <aura:iteration items="{!v.contactLiist}" var = "acc" indexVar="i">
+                                <tr class="slds-hint-parent">
+                                     <th  scope="row">
+                                        <div class="slds-truncate">{!i+1}</div>
+                                    </th>
+                                    <th scope="row">
+                                        <div class="slds-truncate" title="{!acc.Name}">
+                                            <a target="_blank" href="{!'/'+acc.Id}">{!acc.Name}</a> 
+                                        </div>
+                                    </th>
+                                    <th  scope="row">
+                                        <div class="slds-truncate" title="{!acc.Email}">{!acc.Email}</div>
+                                    </th>
+                                     <th  scope="row">
+                                        <div class="slds-truncate" title="{!acc.Phone}">{!acc.Phone}</div>
+                                    </th>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
+                <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{! c.closeModel }"/>
+                        <lightning:button variant="brand"
+                                          label="OK"
+                                          title="OK"
+                                          onclick="{!c.closeModel}"/>
+                    </footer>
+                
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        
+    </aura:if>
+    
+     <aura:if isTrue="{!v.isModalOpenOpportunity}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header">
+                   
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Opportunity List</h2>
+                </header>
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <table class="slds-table slds-table_bordered ">
+                        <thead>
+                            <tr class="slds-line-height_reset slds-text-title_caps">
+                                 <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Name">
+                                        S.No
+                                    </div>
+                                </th>
+                                <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Name">
+                                        Name
+                                    </div>
+                                </th>
+                                
+                                
+                                <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Email">
+                                        StageName
+                                    </div>
+                                </th >
+                                 <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Email">
+                                        CloseDate
+                                    </div>
+                                </th >
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <aura:iteration items="{!v.opportunityList}" var = "acc" indexVar="i">
+                                <tr class="slds-hint-parent">
+                                     <th  scope="row">
+                                        <div class="slds-truncate">{!i+1}</div>
+                                    </th>
+                                    <th scope="row">
+                                        <div class="slds-truncate" title="{!acc.Name}">
+                                            <a target="_blank" href="{!'/'+acc.Id}">{!acc.Name}</a> 
+                                        </div>
+                                    </th>
+                                    <th  scope="row">
+                                        <div class="slds-truncate" title="{!acc.StageName}">{!acc.StageName}</div>
+                                    </th>
+                                     <th  scope="row">
+                                        <div class="slds-truncate" title="{!acc.CloseDate}">{!acc.CloseDate}</div>
+                                    </th>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
+                <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{! c.closeModel }"/>
+                        <lightning:button variant="brand"
+                                          label="OK"
+                                          title="OK"
+                                          onclick="{!c.closeModel}"/>
+                    </footer>
+                
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        
+    </aura:if>
+    
+     <aura:if isTrue="{!v.isModalOpenCase}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header">
+                   
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Followup Leads</h2>
+                </header>
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <table class="slds-table slds-table_bordered ">
+                        <thead>
+                            <tr class="slds-line-height_reset slds-text-title_caps">
+                                 <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Name">
+                                        S.No
+                                    </div>
+                                </th>
+                                <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Name">
+                                        Case No
+                                    </div>
+                                </th>
+                                
+                                
+                                <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Email">
+                                        Status
+                                    </div>
+                                </th >
+                                 <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Email">
+                                        Priority
+                                    </div>
+                                </th >
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <aura:iteration items="{!v.caseList}" var = "acc" indexVar="i">
+                                <tr class="slds-hint-parent">
+                                     <th  scope="row">
+                                        <div class="slds-truncate">{!i+1}</div>
+                                    </th>
+                                    <th scope="row">
+                                        <div class="slds-truncate" title="{!acc.Name}">
+                                            <a target="_blank" href="{!'/'+acc.Id}">{!acc.CaseNumber}</a> 
+                                        </div>
+                                    </th>
+                                    <th  scope="row">
+                                        <div class="slds-truncate" title="{!acc.Status}">{!acc.Status}</div>
+                                    </th>
+                                     <th  scope="row">
+                                        <div class="slds-truncate" title="{!acc.Priority}">{!acc.Priority}</div>
+                                    </th>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
+                <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{! c.closeModel }"/>
+                        <lightning:button variant="brand"
+                                          label="OK"
+                                          title="OK"
+                                          onclick="{!c.closeModel}"/>
+                    </footer>
+                
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        
+    </aura:if>
+    
+     <aura:if isTrue="{!v.isModalNewLead}">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header">
+                   
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">New Leads</h2>
+                </header>
+                <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <table class="slds-table slds-table_bordered ">
+                        <thead>
+                            <tr class="slds-line-height_reset slds-text-title_caps">
+                                 <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Name">
+                                        S.No
+                                    </div>
+                                </th>
+                                <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Name">
+                                        Name
+                                    </div>
+                                </th>
+                                
+                                
+                                <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Email">
+                                        Email
+                                    </div>
+                                </th >
+                                 <th  class="slds-is-resizable" scope="col">
+                                    <div class="slds-truncate" title="Email">
+                                        Phone
+                                    </div>
+                                </th >
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <aura:iteration items="{!v.newleadList}" var = "acc" indexVar="i">
+                                <tr class="slds-hint-parent">
+                                     <th  scope="row">
+                                        <div class="slds-truncate">{!i+1}</div>
+                                    </th>
+                                    <th scope="row">
+                                        <div class="slds-truncate" title="{!acc.Name}">
+                                            <a target="_blank" href="{!'/'+acc.Id}">{!acc.Name}</a> 
+                                        </div>
+                                    </th>
+                                    <th  scope="row">
+                                        <div class="slds-truncate" title="{!acc.Email}">{!acc.Email}</div>
+                                    </th>
+                                     <th  scope="row">
+                                        <div class="slds-truncate" title="{!acc.Phone}">{!acc.Phone}</div>
+                                    </th>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
+                <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{! c.closeModel }"/>
+                        <lightning:button variant="brand"
+                                          label="OK"
+                                          title="OK"
+                                          onclick="{!c.closeModel}"/>
+                    </footer>
+                
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        
+    </aura:if>
+</aura:component>

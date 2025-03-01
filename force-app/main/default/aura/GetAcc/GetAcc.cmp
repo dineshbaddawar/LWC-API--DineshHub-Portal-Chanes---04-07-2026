@@ -1,0 +1,26 @@
+<aura:component  controller="UtilityClass">
+    <aura:handler name="init" value="{!this}" action="{!c.getAccData}"/>
+    <aura:attribute name="accList" type="list"/>
+    
+    <div class="slds">
+    <table class="slds-table slds-table_bordered">
+        <thead>
+        <tr> 
+            
+            <td>Name</td>
+            <td>Phone</td>
+            <td>Id</td>
+            </tr>
+        </thead>
+        <tbody>
+        <aura:iteration items="{!v.accList}" var = "a">
+            <tr>
+            <td>{!a.Name}</td>
+                <td>{!a.Phone}</td>
+                <td>{!a.Id}</td>
+            </tr>
+            </aura:iteration>
+        </tbody>
+        </table>
+    </div>
+</aura:component>

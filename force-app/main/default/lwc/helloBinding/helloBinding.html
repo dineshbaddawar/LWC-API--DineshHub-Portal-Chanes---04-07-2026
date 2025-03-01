@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="LWC Binding" icon-name="custom:custom4">
+     <div class="slds-m-around_small">
+          <p>Hello {greeting} !</p>
+          <lightning-input placeholder="enter message" value={greeting} onchange={handleChange}></lightning-input>
+     </div>
+    </lightning-card> <br/>
+    <lightning-card title="LWC Binding 1" icon-name="custom:custom6">
+     
+     <div class="slds-m-around_medium">
+          <p>Full Name : {fullname}</p>
+     <lightning-input placeholder="Enter full name" value={fullname} onchange={nameChange}></lightning-input>
+     </div> 
+    </lightning-card> <br/>
+    <lightning-card title="LWC Binding 2" icon-name="custom:custom9">
+     <div class="slds-m-around_small">
+          <b>Email: {email}</b>
+          <lightning-input placeholder="enter email" value={email} onchange={emailChange}></lightning-input>
+     </div>
+    </lightning-card>
+</template>

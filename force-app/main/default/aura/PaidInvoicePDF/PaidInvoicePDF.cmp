@@ -1,0 +1,38 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" 
+                access="global" controller="InvoicePaidPDFController">
+    <aura:attribute name="siteURL" type="String" />
+    <aura:attribute name="QuoteURL" type="string" default="{!$Label.c.Invoice_PDF_URL}" />
+    <aura:html tag="style">
+        .slds-modal__container{
+        max-width: 80% !important;
+        width:100% !important;
+        height:100% !important;
+        }
+        .slds-modal__footer{
+        display:none !important;
+        }   
+        .slds-modal__container>.modal-body>.baseDefault.forceChatterBasePublisher.forceChatterLightningComponent,
+        .slds-modal__container>.modal-body>.baseDefault.forceChatterBasePublisher.forceChatterLightningComponent>.forceChatterPublisherPresentationPanel,
+        .slds-modal__container>.modal-body>.baseDefault.forceChatterBasePublisher.forceChatterLightningComponent>.forceChatterPublisherPresentationPanel>.container.activeState,
+        .slds-modal__container>.modal-body>.baseDefault.forceChatterBasePublisher.forceChatterLightningComponent>.forceChatterPublisherPresentationPanel>.container.activeState>.cuf-content
+        {
+        height:100%;
+        }
+        .cPaidInvoicePDF, .cPaidInvoicePDF.body{
+        height:auto;
+        float:right;
+        background:#2076d3;
+        color:white !important;
+        margin:0.25rem;
+        }
+        .cPaidInvoicePDF:hover{
+        color:white;
+        }
+    </aura:html>
+    
+    <iframe src="{!v.QuoteURL + v.recordId }" height="auto" width="auto" style="height: 31rem;;width:100%;"/>
+    
+    <div class="modal-footer slds-align_absolute-center" style="margin-left: 65rem;padding-top: 1rem;">
+        <lightning:button label="Save PDF" iconName="utility:download" variant="brand" onclick="{!c.handleSave}" class="marginTop"/>
+    </div>
+</aura:component>

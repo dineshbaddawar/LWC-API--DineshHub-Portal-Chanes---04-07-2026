@@ -1,0 +1,31 @@
+<aura:component   implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction"
+                access="global" controller="DeleteContactCheckbox"> 
+    <aura:html tag="style">
+        .slds-modal__container{
+        max-width: 80rem !important;
+        width:80% !important;
+       
+        }
+        .slds-modal__header{
+          background: lightblue  !important;
+        }
+        .slds-modal__content{
+        background:   #ADD8E6  !important;
+        }
+        .slds-modal__footer{
+          background:    #ADD8E6  !important;
+        }
+        .slds-text-title--caps{
+        font-weight: bold !important;
+        }
+    </aura:html>
+    
+    <aura:attribute name="conList" type="Contact"/>
+    <aura:attribute name="conSelectedId" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onPageReferenceChange}" />
+    <aura:handler name="change" value="{!v.pageReference}" action="{!c.onPageReferenceChange}" />
+    <aura:attribute name="AllContactListView" type="Object"/>
+  	
+    
+    
+</aura:component>

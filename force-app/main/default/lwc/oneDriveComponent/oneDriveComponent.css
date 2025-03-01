@@ -1,0 +1,27 @@
+.container {
+    padding: 1rem;
+}
+
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.file-table th, .file-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.file-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.file-table td {
+    vertical-align: middle;
+}
+
+lightning-icon {
+    margin-right: 0.5rem;
+}

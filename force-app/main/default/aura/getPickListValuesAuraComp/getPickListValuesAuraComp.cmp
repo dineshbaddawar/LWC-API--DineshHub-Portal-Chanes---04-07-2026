@@ -1,0 +1,12 @@
+<aura:component controller="AuraCompUtilityClas" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="objInfo" type="Account" default="{sobjectType : 'Account'}"/>
+    <lightning:card title="Get Picklist Values using Aura Comp" class="slds-p-around_small">
+        <div class="slds-form-element">
+            <label class="slds-form-element__label" for="select-01">Select Label</label>
+            <div class="slds-select_container">
+                <ui:inputSelect aura:id="accIndustry" class="slds-select" change="{!c.onPicklistChange}"/>
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>

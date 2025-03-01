@@ -1,0 +1,25 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" controller="ZoomApis" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="meetingSubject" type="string"/>
+    <aura:attribute name="meetingdatetime" type="String"/>
+    <aura:attribute name="meetingtime" type="String"/>
+    
+    
+    
+    
+    <lightning:card title="Zoom Meeting" iconName="standard:video">
+        <div class="slds-modal__content" >  
+            <lightning:input type="text" aura:id="name" label="Meeting Name" onchange="{!c.onChangeHandler}" />
+            <lightning:input type="datetime"  aura:id="datetime" label="Meeting DateTime" onchange="{!c.onChangeHandler}" /> 
+            <lightning:input type="number" aura:id="duration" label="Duration" onchange="{!c.onChangeHandler}" />
+        </div>
+        <br/>
+        <div class="modal-footer slds-modal__footer slds-size_1-of-1" style=" width: 110%; padding: 10px; margin-left: -29px;">
+            <div class="forceChangeRecordTypeFooter">
+                <ui:button class="slds-button slds-float_left  slds-button_neutral" label="Cancel" press="{! c.cancelFile}" /> 
+                <ui:button class="slds-button slds-button--brand" label="Save" press="{!c.Save}"/>
+            </div>
+        </div> 
+    </lightning:card>
+    
+</aura:component>

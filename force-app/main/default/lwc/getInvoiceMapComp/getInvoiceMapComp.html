@@ -1,0 +1,39 @@
+<template>
+    <b>Invoice Map LWC </b>
+    <br/>
+<lightning-combobox name="myCombobox" label="Choose an Option" value={selectedValue} 
+placeholder="Select an Option" options={options} onchange={handleChange}></lightning-combobox>
+<br/>
+<br/>
+<div>
+    <template if:false={invoicerecordList}>
+      No Records Found !
+    </template>
+
+
+    <template if:true={invoicerecordList}>
+                    <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread" style="padding-top: 0.5em;">
+                           <div class="slds-col">
+                        <div class="slds-badge slds-list_inline slds-p-bottom_xx-small slds-m-horizontal_small">
+                              <label class="slds-text-color_weak slds-p-horizontal_x-small" for="recordsPerPage">Page Size:</label>
+                              <div class="slds-select_container">
+                              <select class="slds-select" id="recordsPerPage" onchange={handleRecordsPerPage}>
+                                    <template for:each={pageSizeOptions} for:item="option">
+                                          <option key={option} value={option}>{option}</option>
+                                    </template>
+                              </select>
+                              </div>
+                        </div>
+                  </div>  
+                    </div>
+        <lightning-datatable
+                key-field="Id"
+                data={recordsToDisplay}
+                columns={columns}
+                onrowselection={handleRowSelection}
+                >
+            </lightning-datatable>
+    </template>
+    
+</div>
+</template>

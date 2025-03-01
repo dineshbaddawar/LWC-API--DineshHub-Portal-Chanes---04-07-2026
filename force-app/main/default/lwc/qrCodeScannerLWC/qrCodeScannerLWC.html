@@ -1,0 +1,61 @@
+<template>
+   
+  
+
+
+<!-- Page header here -->
+ 
+    <img style="max-height: 100px" alt="Image on T.O." src={addimage}/>
+<!-- Start page content -->
+<lightning-card>
+    <div>
+ <h2 style=" font-size: 4rem;text-align: center;font-family: serif;"> Reference Form</h2>
+
+    </div>
+   
+    <lightning-layout class="slds-form">
+        <lightning-layout-item padding="around-small">
+            
+           <div  style="min-height :100px;min-width:500px;margin-left :50px;margin-right :50px;" >
+            <lightning-input type="text" label="Dr Name" disabled="true"  value={doctorName}></lightning-input>
+        <lightning-input name="FirstName" class="fnameCmp" type="text" label="First Name" placeholder="FirstName" onchange={HandleChange}></lightning-input>
+        <lightning-input name="LastName"  class="LnameCmp" type="text" label="Last Name"  placeholder="LastName"  onchange={HandleChange}></lightning-input>
+        <lightning-input name="Phone"     class="phoneCmp" type="tel"  label="Phone"      placeholder="Mobile No" onchange={HandleChange}></lightning-input>
+        <lightning-input name="Email"     class="EmailCmp" type="email" label="Email"     placeholder="Email"     onchange={HandleChange}></lightning-input>
+        <!-- <lightning-input type="date" name="Birthdate" label="BirthDate" onchange={HandleChange}></lightning-input>
+        <lightning-combobox name="Diet" label="Diet Type" value={value} options={optionValue1} onchange={HandleChange}> </lightning-combobox>
+        <lightning-combobox name="Condition" label="Condition" value={value} options={optionValue} onchange={HandleChange}> </lightning-combobox>
+        <lightning-textarea name="DietDescription" label="Diet Description"   placeholder="Diet Description"     onchange={HandleChange}></lightning-textarea> 
+        <lightning-input-address
+        address-label="Address"
+        street-label="Street"
+        city-label="City"
+        country-label="Country"
+        province-label="State/Province"
+        postal-code-label="PostalCode"
+        city={city}
+        street={street}
+        province={province}
+        country={country}
+        postal-code={postalCode}
+        onchange={handleChangeAddress} ></lightning-input-address> -->
+      
+
+    </div>
+     <div if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+      
+        </lightning-layout-item>
+   </lightning-layout>
+   <br>
+      <div slot="footer" >
+        <div class="slds-align_absolute-center">
+            <lightning-button type="sumbit" variant="success" label="Sumbit" onclick={HandleSumbit} ></lightning-button>    
+        </div> 
+    </div>
+</lightning-card>
+<!-- End page content -->
+  
+
+</template>

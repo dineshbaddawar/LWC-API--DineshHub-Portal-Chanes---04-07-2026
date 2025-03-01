@@ -1,0 +1,161 @@
+<apex:page renderAs="pdf"  showHeader="false" sidebar="false"  applyHtmlTag="false" applyBodyTag="false" title="PPFAS Mutual Fund">
+    <html>
+        <head>
+        </head>
+        <body style="background: gainsboro;color: darkslategray !important;">
+            
+            
+            
+            <div style="margin:0;padding:0;word-spacing:normal;background-color:#f6f6f6">
+                <div role="article" lang="en" style="background-color:#f6f6f6">
+                    <table role="presentation" style="width:100%;border:0;border-spacing:0">
+                        <tbody><tr>
+                            <td align="center">
+                                
+                                <div class="m_7789459932297380536outer">
+                                    <table role="presentation" style="width:100%;border:0;border-spacing:0;border-radius:5px;background:#fff">
+                                        <tbody><tr>
+                                            <td style="border-top-right-radius:5px;border-top-left-radius:5px;background:#33a23d;padding:10px 0px 10px 0px;font-family:Zurich BT,Arial,Helvetica,sans-serif;font-size:18px;line-height:28px;font-weight:bold;color:#fff;text-align:center">
+                                                PPFAS Mutual Fund
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding:5px;font-size:14px;text-align:left;color:#555;background:#fff;border-radius:5px">
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    <p style="margin:0px 15px">Dear Investor,</p>
+                                                    <p style="margin:0px 15px">
+                                                        <br/>Thank you for choosing to invest in Parag Parikh Flexi Cap Fund - Regular Plan.<br/> 
+                                                        <br/>
+                                                        The allotment details for your 'Purchase' transaction are: <br/>
+                                                    </p>
+                                                    <table cellpadding="0" cellspacing="0" border="0" align="center" style="width:100%;margin:0 auto;font-family:'Open Sans',sans-serif;padding-top:10px;margin-top:10px;margin-bottom:10px;text-align:left!important;padding-left:15px;padding-right:15px">
+                                                        <tbody><tr>
+                                                            <td width="40%" style="width:35%;border-right:1px solid #b0b0b0;border-top:1px solid #b0b0b0;border-left:1px solid #b0b0b0;border-bottom:1px solid #b0b0b0;padding:8px;text-align:left!important">
+                                                                <span style="font-size:13px;color:#000000;font-family:'Open Sans',sans-serif!important">Amount</span>
+                                                            </td>
+                                                            <td style="border-right:1px solid #b0b0b0;border-top:1px solid #b0b0b0;border-bottom:1px solid #b0b0b0;padding:8px">
+                                                                <span style="font-size:13px;color:#000000;font-family:'Open Sans',sans-serif!important;text-align:left!important"><b>1,000.00</b></span>
+                                                            </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="40%" style="width:35%;border-right:1px solid #b0b0b0;border-left:1px solid #b0b0b0;border-bottom:1px solid #b0b0b0;padding:8px;text-align:left!important">
+                                                                    <span style="font-size:13px;color:#000000;font-family:'Open Sans',sans-serif!important">Value Date </span>
+                                                                </td>
+                                                                <td style="border-right:1px solid #b0b0b0;border-bottom:1px solid #b0b0b0;padding:8px">
+                                                                    <span style="font-size:13px;color:#000000;font-family:'Open Sans',sans-serif!important;text-align:left!important"><b>02-Apr-2024</b></span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="40%" style="width:35%;border-right:1px solid #b0b0b0;border-left:1px solid #b0b0b0;border-bottom:1px solid #b0b0b0;padding:8px;text-align:left!important">
+                                                                    <span style="font-size:13px;color:#000000;font-family:'Open Sans',sans-serif!important">Folio No</span>
+                                                                </td>
+                                                                <td style="border-right:1px solid #b0b0b0;border-bottom:1px solid #b0b0b0;padding:8px">
+                                                                    <span style="font-size:13px;color:#000000;font-family:'Open Sans',sans-serif!important;text-align:left!important"><b>13969514</b></span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="40%" style="width:35%;border-right:1px solid #b0b0b0;border-left:1px solid #b0b0b0;border-bottom:1px solid #b0b0b0;padding:8px;text-align:left!important">
+                                                                    <span style="font-size:13px;color:#000000;font-family:'Open Sans',sans-serif!important">Units allotted</span>
+                                                                </td>
+                                                                <td style="border-right:1px solid #b0b0b0;border-bottom:1px solid #b0b0b0;padding:8px">
+                                                                    <span style="font-size:13px;color:#000000;font-family:'Open Sans',sans-serif!important;text-align:left!important"><b>14.274</b></span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="40%" style="width:35%;border-right:1px solid #b0b0b0;border-left:1px solid #b0b0b0;border-bottom:1px solid #b0b0b0;padding:8px;text-align:left!important">
+                                                                    <span style="font-size:13px;color:#000000;font-family:'Open Sans',sans-serif!important">Net Asset Value</span>
+                                                                </td>
+                                                                <td style="border-right:1px solid #b0b0b0;border-bottom:1px solid #b0b0b0;padding:8px">
+                                                                    <span style="font-size:13px;color:#000000;font-family:'Open Sans',sans-serif!important;text-align:left!important"><b>70.0554</b></span>
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                            
+                                                        </tbody></table>
+                                                    
+                                                    <p style="margin:0px 15px">
+                                                        <br/> 
+                                                        
+                                                        Please <a href="https://digital.camsonline.com/SMARTSOA/PP_E_2ACB40B82C8CF2ABEF19F26BFC73FC3D9BE313AA" style="color:#33a23d" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://digital.camsonline.com/SMARTSOA/PP_E_2ACB40B82C8CF2ABEF19F26BFC73FC3D9BE313AA&amp;source=gmail&amp;ust=1712227792440000&amp;usg=AOvVaw2-j7gwSBetRlEoyCzC_QA1">  Click Here</a> to view your Smart statement. To open your statement, please enter PAN as your password.
+                                                        <br/>              
+                                                        <br/>
+                                                        
+                                                        <b>Note :</b>    Unitholders invested through / with demat account are requested to refer your Demat statement for your unit holdings in couple of days. In case of any clarification, you may please contact your DP or access your account statement from <a href="https://www.mfcentral.com/" style="color:#33a23d" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.mfcentral.com/&amp;source=gmail&amp;ust=1712227792440000&amp;usg=AOvVaw0xjIx_MqgD4TkUdOxRqaU2"> MF Central platform.</a>
+                                                        
+                                                        <br/><br/>
+                                                        Please <a href="https://amc.ppfas.com/contact/index.php" style="color:#33a23d" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://amc.ppfas.com/contact/index.php&amp;source=gmail&amp;ust=1712227792440000&amp;usg=AOvVaw1HBFeQrEJ0JPrsjuManRzA"> contact us</a> in case you have to ask or tell us something.<br/>
+                                                        <br/>
+                                                        
+                                                        
+                                                    </p>
+                                                    <p style="font-size:14px;line-height:2;word-break:break-word;font-family:Zurich BT,Arial,Helvetica,sans-serif;margin:0;margin-top:20px;text-align:left;margin:0px 15px">
+                                                        Warm Regards, <br/>
+                                                        <span style="font-size:14px;color:#000000;font-weight:bold">
+                                                            Team PPFAS Mutual Fund </span><br/><br/>
+                                                        <apex:image value="{!$Resource.PPFASLogo}" style="text-align:left"/>
+                                                    </p><hr style="margin:0px 15px"/>
+                                                    <p></p>
+                                                    <p style="margin:0px 15px 0px 15px;text-align:justify;font-size:12px">
+                                                        CONFIDENTIALITY INFORMATION AND DISCLAIMER This email message and its attachments may contain confidential, proprietary or legally privileged information and is intended solely for the use of the individual or entity to whom it is addressed. If you have erroneously received this message, please delete it immediately and notify the sender. If you are not the intended recipient of the email message you should not disseminate, distribute or copy this e-mail. E-mail transmission cannot be guaranteed to be secure or error-free as information could be intercepted, corrupted,lost, destroyed, incomplete or contain viruses and PPFAS Asset Management Pvt Ltd and Computer Age Management Services Pvt. Ltd (CAMS) accepts no liability for any damage caused by the limitations of the e-mail transmission.<br/>
+                                                    </p>
+                                                    
+                                                    
+                                                    
+                                                    <table role="presentation" style="width:100%;border:0px;color:#555">
+                                                        <tbody><tr>
+                                                            <td style="margin:0px 15px;text-align:center">
+                                                                <table role="presentation" style="width:96%;border:0px;color:#555;background:#d8fbe2;padding:5px 10px!important;margin-top:15px!important;margin-bottom:15px!important" align="center">
+                                                                    <tbody><tr>
+                                                                        <td style="text-align:center">
+                                                                            <p style="text-align:justify;font-size:12px;margin:5px 15px 15px 15px">
+                                                                                We will never seek payments through payment links nor seek any financially sensitive information (like OTP, password, MPIN, etc.) via phone, e-mail, SMS or any other mode.
+                                                                            </p>
+                                                                        </td>
+                                                                        </tr>
+                                                                    </tbody></table>
+                                                            </td>
+                                                            </tr>
+                                                        </tbody></table>
+                                                    
+                                                    
+                                                    <p style="font-size:14px;line-height:25px;font-weight:500;font-family:Zurich BT,Arial,Helvetica,sans-serif;text-align:left;margin:0px 15px;font-size:12px">
+                                                        
+                                                        
+                                                        <b>Registered Office:</b>  
+                                                        81/82, 8th Floor, Sakhar Bhavan, Ramnath Goenka Marg, 230, Nariman Point, 
+                                                        Mumbai - 400 021. INDIA. Tel: 91 22 6140 6555, Fax: 91 22 6140 6590<br/>
+                                                        <b>Toll Free</b> 1800 266 7790,
+                                                        <b>Email:</b> <a href="mailto:mf@ppfas.com" style="color:#33a23d" target="_blank">mf@ppfas.com</a> <b>Website:</b> <a href="https://amc.ppfas.com" style="color:#33a23d" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://amc.ppfas.com&amp;source=gmail&amp;ust=1712227792440000&amp;usg=AOvVaw1i2AL9sgaw--crJMVWyC-A">amc.ppfas.com</a><br/>
+                                                        <b>Sponsor</b>: Parag Parikh Financial Advisory Services Limited.<br/>
+                                                        CIN: U67190MH1992PLC068970<br/>
+                                                        <b>Trustee</b>: PPFAS Trustee Company Private Limited. CIN: U65100MH2011PTC221203<br/>
+                                                        <b>Investment Manager (AMC)</b>: PPFAS Asset Management Private Limited.<br/>
+                                                        CIN: U65100MH2011PTC220623
+                                                        
+                                                        <br/>
+                                                    </p>
+                                                    
+                                                    <p style="font-weight:bold;color:#555;margin:0 auto;text-align:center;padding:8px 15px;margin:15px 15px;border-top:1px dotted #ccc;border-top:1px dotted #ccc;border-bottom:1px dotted #ccc"> 
+                                                        Mutual Fund investments are subject to market risks,
+                                                        read all scheme related documents carefully<br/>
+                                                        
+                                                    </p>
+                                                    
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    
+                                </div>
+                                
+                            </td>
+                            </tr>
+                        </tbody></table>
+                </div>
+            </div>
+            
+        </body>
+    </html>
+</apex:page>

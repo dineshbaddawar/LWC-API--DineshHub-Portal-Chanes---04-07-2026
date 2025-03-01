@@ -1,0 +1,153 @@
+<apex:page renderAs="pdf"  showHeader="false" sidebar="false"  applyHtmlTag="false" applyBodyTag="false" standardController="Invoice__c" extensions="InvoicePaidPDFController" title="Invoice PDF">
+    <html>
+        <head>
+            <style>
+                @page {
+                
+                background-image: url('https://utilitarianlabs-apiorg-dev-ed--c.vf.force.com/resource/1675910773000/Watermark?');
+                background-repeat: no-repeat;
+                background-position: center;                      
+                
+                }
+            </style>
+        </head>
+        <body style="background: gainsboro;color: darkslategray !important;">
+            
+            
+            <div style="display: inline-block;width: 100%;margin: 1rem;padding: 2rem 2rem;font-family: Noto Sans,Helvetica,sans-serif;">
+                <div style="display: inline-block;padding: 1rem 1rem;vertical-align: middle;float:left;width:50%;font-size: 14px;">
+                    <apex:image value="{!$Resource.Invoice_logo}" style="height:150px;width:100px;margin-top: -55px;" /><br/>
+                    <div ><p class='organization'><strong>Salesforce CRM</strong></p></div>
+                    <div style="font-size: 16px;">
+                        DEPT LA 22192<br/>
+                        Pasadena, California 91185-2192<br/> 
+                        United States
+                        <br/>
+                    </div>
+                </div>
+                <div style="display: inline-block;padding: 1rem 1rem;vertical-align: middle;font-size: 16px;margin-top: 40px;">
+                    <span style="font-size:25px;margin-top:15px;color: #471742;font-family: monospace;">
+                        <strong >INVOICE</strong>
+                    </span><br/>
+                    <br/>
+                    Invoice # :  <b style="font-size:14px;">{!invRec.Name} </b>
+                    <br/>Invoice Date :<b> <apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!invRec.Invoice_Date__c}" /> </apex:outputText></b>
+                    <br/>Invoice Amount : <b style="font-size:14px;">$ {!invRec.Invoice_Amount__c} (USD)</b> 
+                    <br/> Cust ID : {!invRec.Opportunity__r.AccountId}<b style="font-size:14px;"></b>
+                    <br/>Billing Period : <b style="font-size:14px;">{!SubStartDate} To {!SubEndDate}</b> <b style="font-size:14px;"></b>
+                    <br/><span style="color:green;font-size:18px;">PAID</span>
+                </div>
+            </div><br/>
+            
+            
+            <hr style="border-top: 1px;"/>
+            <table style="width:100%;font-family: Noto Sans,Helvetica,sans-serif;background: gainsboro;">
+                <tr colspan="2" >
+                    <td style="text-align:center;font-size: 16px;color: darkcyan;">Billing/Shipping Details</td>
+                </tr>
+            </table>
+            <hr style="border-top: 1px;"/>
+            
+            <div style="display: inline-block;width: 100%;margin: 1rem;padding: 2rem 2rem;padding-top:10px;font-family: Noto Sans,Helvetica,sans-serif;">
+                <div style="display: inline-block;padding: 2rem 2rem;vertical-align: middle;float:left;width:50%;margin-top: 20px;">
+                    <strong style="font-size:14px;">BILLING TO</strong><br/>
+                    <span><apex:outputText value="{!invRec.Billing_Address__c}" /></span>  <br />
+                </div>
+                <div style="display: inline-block;padding: 2rem 2rem;vertical-align: middle;display: inline-block;white-space: pre-line; !important">
+                    <strong style="font-size:14px;">SHIPPING TO</strong><br/>
+                    <apex:outputText value="{!invRec.Shipping_Address__c}" /><br />
+                </div>
+            </div>
+            <br/>
+            <br/>
+            
+            <br/>
+            <hr style="border-top: 1px;"/>
+            <table style="width:100%;font-family: Noto Sans,Helvetica,sans-serif;">
+                <tr colspan="2" >
+                    <td style="text-align:left;font-size:12px;">Description</td>
+                    <td style="text-align:right;font-size:12px;">Amount (USD)</td>
+                </tr>
+            </table>
+            <hr style="border-top: 1px;"/>
+            <table style="width:100%;font-family: Noto Sans,Helvetica,sans-serif;">
+                <tr colspan="2">
+                    <td style="text-align:left;font-weight:bold;">
+                        <p style="text-align:left;font-size:14px;margin-left:50px;"> Quizizz Sitewide Plan</p>
+                    </td>
+                    <td style="font-weight:bold;text-align:right;"> 
+                        
+                        <p style="text-align:right;font-size:14px;">$ <apex:outputText value="{0, number, ###,###,###,###.00}" id="myNumberDisplay" >
+                            <apex:param value="{!invRec.Invoice_Amount__c}"/>
+                            </apex:outputText></p>
+                    </td>
+                </tr> 
+                
+                <hr style="border-top: 1px;"/>
+            </table>
+            <div style="text-align:right;font-size:14px;font-family: Noto Sans,Helvetica,sans-serif;">
+                <b > Total $
+                    <apex:outputText value="{0, number, ###,###,###,###.00}" id="myNumberDisplay1" label="test">
+                        <apex:param value="{!invRec.Invoice_Amount__c}"/>
+                    </apex:outputText></b>
+                <hr style="border-top: 1px;"/>
+            </div>
+            <div style="text-align:right;font-family: Noto Sans,Helvetica,sans-serif;">
+                <b >Payments (USD)&nbsp; $<apex:outputText value="{0, number, ###,###,###,###.00}" id="myNumberDisplay2" label="test">
+                    <apex:param value="{!invRec.Amount__c}"/>
+                    </apex:outputText><hr style="border-top: 1px;"/> </b>                
+            </div>
+            <div style="text-align:right;font-family: Noto Sans,Helvetica,sans-serif;">
+                <b >Amount Due (USD)&nbsp; $<apex:outputText value="{0, number, ###,###,###,###.00}" id="myNumberDisplay3" label="test">
+                    <apex:param value="{!invRec.Due_Amount_1__c}"/>
+                    </apex:outputText><hr style="border-top: 1px;"/> </b>                
+            </div>
+            
+          
+            
+            <div style="font-family: Noto Sans,Helvetica,sans-serif;">
+                <h4>
+                    <b style="font-size:14px;">PAYMENTS</b> 
+                    <apex:outputText rendered="{!invRec.Mode_Terms_of_Payment__c == 'Offline'}">
+                        <p style="text-align:left; margin-top:-10px;">
+                            $<apex:outputText value="{0, number, ###,###,###,###.00}">
+                            <apex:param value="{!invRec.Amount__c}"/>
+                            </apex:outputText> was paid on {!invRec.Invoice_Date__c} by Offline Transfer.
+                        </p>
+                    </apex:outputText>
+                    <apex:outputText rendered="{!invRec.Mode_Terms_of_Payment__c == 'Online'}">
+                        <p style="text-align:left; margin-top:-10px;">
+                          <b>  $<apex:outputText value="{0, number, ###,###,###,###.00}" >
+                            <apex:param value="{!invRec.Amount__c}"/>
+                            </apex:outputText> </b>
+                            was paid on &nbsp; <b> <apex:outputText value="{0,date,MM/dd/yy}"> <apex:param value="{!invRec.Invoice_Date__c}" /> </apex:outputText> </b> by Online. 
+                           
+                        </p>
+                    </apex:outputText>
+                    <apex:outputText rendered="{!invRec.Mode_Terms_of_Payment__c == 'Cash'}">
+                        <p style="text-align:left; margin-top:-10px;">
+                            $<apex:outputText value="{0, number, ###,###,###,###.00}" >
+                            <apex:param value="{!invRec.Amount__c}"/>
+                            </apex:outputText> was paid on {!invRec.Invoice_Date__c} by Credit Card.
+                        </p>
+                    </apex:outputText>
+                    
+                </h4>
+            </div>
+            <div style="font-family: Noto Sans,Helvetica,sans-serif;">
+                <h4>
+                    <b style="font-size:14px;">NOTES</b> 
+                    <p style="text-align:left; margin-top:-10px;">
+                        Thanks for your subscription.
+                    </p>
+                </h4>
+            </div>
+               
+            <div>
+                <apex:image value="{!$Resource.thankyoulogo}"  style="height:50%;width:28%;margin-left:35%;" /><br/>
+            </div>
+            
+            
+        </body>
+    </html>
+</apex:page>

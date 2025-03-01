@@ -1,0 +1,100 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global"  controller="AuraCompUtilityClas">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="contactList" type="List"/>
+    <aura:attribute name="selectedDocumentId" type="string"/>
+    <aura:attribute name="lstContentDoc" type="List"/>
+    <aura:attribute name="hasModalOpen" type="boolean" default="false"/>
+    <aura:attribute name="PreviewButton" type="boolean" default="false"/>
+    <aura:attribute name="selectedRecordId" type="String"/>
+    <aura:attribute name="attachementId" type="String"/>
+    <aura:attribute name="pdfLink" type="String"  default="{!$Label.c.pdfpreviewLink}" />
+    <aura:attribute name="PdfPreview" type="Boolean" default="false"/>
+    <aura:attribute name="ShowPage" type="Boolean" default="false" />
+    <aura:html tag="style">             
+        .slds-modal__container{        
+        width: 100% !important;
+        max-width: 80rem !important;
+        height : 100%; !important;
+        
+        }        
+        
+        .content{
+        min-height: 100vh;
+        color:#1b1b1b;
+        font-size: 1.1em;
+        background-color:#f2f0ea;
+        padding:1%;
+        border-radius:5px;
+        }
+    </aura:html>
+    <aura:if isTrue="{!v.ShowPage}">
+    <div class="slds-modal__container">
+        <h2 style=" text-align: center;font-size: 25px;font-family: math;">
+            SELECT CONTACT</h2>
+        <br />
+        <table class="slds-table slds-table--bordered ">
+            <thead class="dinesh">
+                <tr class="slds-text-title--caps">
+                    <th>
+                    </th>
+                    <th>
+                        <span class="slds-truncate" title="Name">Name</span>      
+                    </th>
+                    <th>
+                        <span class="slds-truncate" title="Name">Email</span>      
+                    </th>
+                    <th>
+                        <span class="slds-truncate" title="Name">Phone</span>      
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+          
+            <tbody>
+                <aura:iteration items="{!v.contactList}" var="con" indexVar="i">
+                    <tr>
+                        <td scope="row">
+                            <input type="radio" id="{!con.Id}" name="options"  onclick="{!c.checkboxSelect}"  />
+                            <!--lightning:radioGroup  aura:id="mygroup"   keyField="id"  onchange="{!c.selectAccountRadioGroupOnChange}" options="{! v.contactList }" value="{!con.Id }" type="radio"/-->
+                        </td>
+                        <td scope="row">
+                            <div class="slds-truncate" title="{!con.Name}">{!con.Name}</div>
+                        </td>
+                        <td scope="row">
+                            <div class="slds-truncate" title="{!con.Email}">{!con.Email}</div>
+                        </td>
+                        <td scope="row">
+                            <div class="slds-truncate" title="{!con.Phone}">{!con.Phone}</div>
+                        </td>
+                        <aura:if isTrue="{!v.PreviewButton}">
+                            <td scope="row">
+                                <lightning:button variant="brand" label="Preview" title="Brand action" onclick="{! c.handleClick }" />
+                            </td>
+                        </aura:if>
+                    </tr>   
+                </aura:iteration>
+            </tbody> 
+        </table>
+        <div class="modal-footer slds-modal__footer slds-size_1-of-1" style="width: 100%; ">
+            <div class="forceChangeRecordTypeFooter">
+                <ui:button class="slds-button slds-float_left  slds-button_neutral" label="Cancel"
+                           press="{! c.hideQuickAction}" />
+                <ui:button class="slds-button slds-button--brand" label="Save" press="{!c.SaveRecord}" />
+            </div>
+        </div>
+    </div>
+    </aura:if>
+    <aura:if isTrue="{!v.PdfPreview}">
+        <div class="content">
+            <iframe src="{!v.pdfLink+ v.attachementId }" scrolling="no" height="auto" width="auto" style="height:100%;width:100%; display:block;  min-height: 100vh;  background-color: #f2f0ea; border: none;"/>
+        </div>
+         <div class="modal-footer slds-modal__footer slds-size_1-of-1" style="width: 100%; ">
+            <div class="forceChangeRecordTypeFooter">
+                <ui:button class="slds-button slds-float_left  slds-button_neutral" label="Cancel"
+                           press="{! c.hideQuickAction}" />
+            </div>
+        </div>
+    </aura:if>
+    
+</aura:component>

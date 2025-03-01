@@ -1,0 +1,55 @@
+<template>
+     <div class="slds-grid slds-gutters">
+          <div style="width: 30%;">
+               <lightning-accordion allow-multiple-sections-open>
+                    <template for:each={item} for:item="folder">
+                         <div key={folder.name}>
+                             <lightning-accordion-section name="A" label={folder.name}>
+                                 <img src={folderfile} width="35" height="50">
+                                 <b style="padding-left:5px;" onclick={handleFolderClick} data-record-id={folder.name}>
+                                     {folder.name}
+                                 </b>
+                                 <template for:each={folder.items} for:item="file">
+                                     <li key={file.id} onclick={handleItemClickNew} data-record-id={file.id} name={file.id} style="padding: 4px 4px 4px 4px;">
+                                         <lightning-icon icon-name='utility:file' alternative-text='file' variant={file.variant} size='medium' title='file'></lightning-icon>
+                                         <b>{file.name}</b>
+                                     </li>
+                                 </template>
+                             </lightning-accordion-section>
+                         </div>
+                     </template>
+               </lightning-accordion>
+          </div>
+          <div style="flex-grow: 1;">
+               <span style="margin-bottom: 2rem;">
+                    <template lwc:if={showUploadFileButton}>
+                         <lightning-button variant="brand" label="Upload Document" onclick={uploadFile}
+                              class="slds-m-left_x-small slds-p-bottom_small"></lightning-button>
+                    </template>
+                    <template lwc:if={showDeleteFileButton}>
+                    <lightning-button variant="destructive" label="Delete Document" onclick={deleteFiles}
+                         class="slds-m-left_x-small slds-p-bottom_small"></lightning-button>
+                    </template>
+               </span>
+               <template lwc:if={showPDF}>
+                    <iframe src={pdfUrl} width="100%" height="600px" title="PDF Viewer"
+                         style="margin-top: 2rem; "></iframe>
+               </template>
+               <template lwc:if={showUploadFileScreen}>
+                    <lightning-file-upload
+                    label="Attach receipt"
+                    name="fileUploader"
+                    accept={acceptedFormats}
+                    record-id={myRecordId}
+                    onuploadfinished={handleUploadFinished}
+                    multiple>
+    </lightning-file-upload>
+               </template>
+          </div>
+     </div>
+
+
+
+     
+     
+</template>

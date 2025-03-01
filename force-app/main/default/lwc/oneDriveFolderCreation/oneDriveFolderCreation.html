@@ -1,0 +1,115 @@
+<template>
+
+    <div class="spinner">
+        <template if:true={isLoading}> 
+                <c-customspinner ></c-customspinner>
+        </template>
+    </div>
+
+    <div class="spinner">
+        <template if:true={isDeletingToastLoading}> 
+            <c-spinner-component message={spinnerMessage}></c-spinner-component>
+        </template>
+    </div>
+
+    <div class="spinner">
+        <template if:true={isLoadingFolderFiles}> 
+            <c-spinner-component message={spinnerMessage}></c-spinner-component>
+        </template>
+    </div>
+    
+    <template if:true={isShowFileScreen}>
+
+    <lightning-card>
+        <div class="slds-m-around_medium" style="background: unset;">
+          
+            <!-- Display Files if showFiles is true -->
+            <template if:true={showFiles}>
+                <div class="slds-m-bottom_medium">
+                    <button onclick={handleBackClick} class="slds-button slds-button_brand slds-m-right_small"><b>Back to Folders</b></button>
+                    <template if:true={fileData}>
+                        <p>{fileData.filename}</p>
+                    </template>
+                </div>
+                
+                <template if:true={showFileScreen}>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" style="font-weight: bold;">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th>File Name</th>
+                            <th>Created Date</th>
+                            <th>File Size</th>
+                            <th class="slds-align_absolute-center">Download</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={fileData} for:item="file">
+                            <tr key={file.url}>
+                                <td> <lightning-icon icon-name="standard:file" title="File"></lightning-icon>  &nbsp;&nbsp;{file.label} </td>
+                                <td>{file.createdDateTime}</td>
+                                <td>{file.size}</td>
+                                <td> <lightning-button-icon class="slds-align_absolute-center" icon-name="utility:download" alternative-text="Download" title="Download File" onclick={handleFileClick} data-url={file.url}></lightning-button-icon> </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+            <template if:false={showFileScreen}>
+              No Files Records ..!
+            </template>
+            </template>
+
+            <!-- Display Folders if showFiles is false -->
+            <template if:false={showFiles}>
+                <button onclick={ShowFolderCreateScreen} class="slds-button slds-button_brand slds-m-bottom_medium"><b>Create Folder</b></button>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" style="font-weight: bold;">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th>Folder Name</th>
+                            <th>Created Date</th>
+                            <th class="slds-align_absolute-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={folderData} for:item="folder">
+                            <tr key={folder.value}>
+                                <td> <lightning-icon icon-name="standard:folder" title="Folder"></lightning-icon>  &nbsp;&nbsp; <a onclick={handleRowClick} data-id={folder.value}>{folder.label}</a> </td>
+                                <td>{folder.createdDateTime}</td>
+                                <td> <lightning-button-icon class="custom-delete-button slds-align_absolute-center" icon-name="utility:delete" alternative-text="Delete" title="Delete File" data-id={folder.value} onclick={handleDeleteFileClick}> </lightning-button-icon> </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <!--Folder Creation Screen-->
+            <template if:true={isModalOpen}>
+                <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                    
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <h2 class="slds-text-heading_medium">Enter Folder Name</h2>
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                                <lightning-icon icon-name="utility:close" alternative-text="Close"></lightning-icon>
+                            </button>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium">
+                            <lightning-input label="Folder Name" value={folderName} onchange={handleInputChange} placeholder="Enter folder name"></lightning-input>
+                        </div>
+                        <footer class="slds-modal__footer slds-grid slds-grid_align-center">
+                            <div class="slds-button-group">
+                                <lightning-button label="Cancel" variant="destructive" onclick={closeModal}></lightning-button>
+                                <lightning-button label="Sumbit" class="slds-m-left_x-small" variant="brand" onclick={handleFolderCreation}></lightning-button>
+                            </div>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+
+        </div>
+    </lightning-card>
+
+     </template>
+
+</template>

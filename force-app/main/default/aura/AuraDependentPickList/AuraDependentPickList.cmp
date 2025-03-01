@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="parentOptionList" type="List"/>
+    <aura:attribute name="dependentPickList" type="Object"/>
+    <aura:attribute name="dependentOptionList" type="List"/>
+    
+    <lightning:card title="Dependent PickList Using Aura Component" iconName="custom:custom3">
+        <div class="slds-size_1-of-1 slds-p-around_medium">
+            <lightning:select name="parentPickList" label="Country" aura:id="parentpick" onchange="{!c.pickChange}">
+                <option value="">None</option>
+                <aura:iteration items="{!v.parentOptionList}" var="p">
+                    <option value="{!p.value}">{!p.text}</option>
+                </aura:iteration>
+            </lightning:select>
+         
+             <lightning:select name="dependentPickList" label="City">
+                <option value="">None</option>
+                <aura:iteration items="{!v.dependentOptionList}" var="d">
+                    <option value="{!d.value}">{!d.text}</option>
+                </aura:iteration>
+            </lightning:select>
+        </div>
+    </lightning:card>
+    
+</aura:component>

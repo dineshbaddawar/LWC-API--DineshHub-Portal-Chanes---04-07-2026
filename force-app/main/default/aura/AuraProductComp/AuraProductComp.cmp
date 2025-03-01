@@ -1,0 +1,125 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global"  controller="AuraCompUtilityClas">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="BrandingAssetList" type="List"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="Productlist" type="List"/>
+    <aura:attribute name="selectedLeads" type="List"/>
+    <aura:attribute name="selectedProductList" type="List"/>
+    <aura:attribute name="AllProductIds" type="List"/>
+    <aura:attribute name="showSelectedProductList" type="List"/>
+    
+    <aura:attribute name="selectedCount" type="integer" default="0"/>
+    <aura:attribute name="Productcount" type="integer"/>
+    <aura:attribute name="BBAIdString" type="String"/>
+    
+    <aura:attribute name="showErrorClass" type="boolean" default="false"/>
+    <aura:attribute name="EditMode" type="boolean" default="false" />
+    <aura:attribute name="EditEmail" type="boolean" default="false" />
+    <aura:attribute name="showSaveButton" type="Boolean" default="false"/>
+    <aura:attribute name="showAllProducts" type="Boolean" default="false"/>
+    <aura:attribute name="showSelectedProducts" type="Boolean" default="false"/>
+     <aura:attribute name="showBackButton" type="Boolean" default="false"/>
+    
+    
+    
+    <aura:html tag="style">             
+        .slds-modal__container{        
+        width: 100% !important;
+        max-width: 80rem !important;
+        height : 100%; !important;
+        
+        }        
+    </aura:html>
+    
+    <div class="modal-header slds-modal__header">
+        <h2 style=" text-align: center;font-size: 25px;font-family: math;">
+            Add Products</h2>
+    </div>
+    <aura:if isTrue="{!v.showAllProducts}">
+        <div class="slds-col modal-body">
+            <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered" role="grid">
+                <tr>
+                    <th scope="col" height="22" style="width: 3rem;font-weight: bold;">Sr.No</th>
+                    <th  scope="col" height="22"></th>
+                    <th scope="col" height="22" style="font-weight: bold;">Product Name</th> 
+                    <th scope="col" height="22" style="font-weight: bold;">Description</th>
+                    <th scope="col" height="22" style="font-weight: bold;"> Product Family</th> 
+                </tr>                      
+                <tbody>
+                    <aura:iteration items="{!v.Productlist}" var="ProductlistRec"  indexVar="rowIndex">
+                        <tr class="slds-hint-parent">
+                            <td>{!rowIndex + 1}</td>
+                            <td>
+                                <label class="slds-checkbox">
+                                    <ui:inputCheckbox aura:id="checkProduct" value="" text="{!ProductlistRec.Id}" change="{!c.selectSingleProduct}"/>
+                                    <span class="slds-checkbox--faux" />
+                                    <span class="slds-form-element__label"></span>
+                                </label>
+                            </td>
+                            <td data-label="Product Name" scope="row">
+                                <div class="slds-truncate" title="{!ProductlistRec.Name}">{!ProductlistRec.Name}</div>  
+                            </td>
+                            <td data-label="Description">
+                                <div class="slds-truncate" title="{!ProductlistRec.ProductCode}">{!ProductlistRec.ProductCode}</div>
+                            </td>
+                            <td data-label="Family">
+                                <div class="slds-truncate" title="{!ProductlistRec.Description}">{!ProductlistRec.Family}</div>
+                            </td>
+                        </tr>
+                        
+                    </aura:iteration> 
+                </tbody>
+            </table>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.showSelectedProducts}">
+        <div class="slds-col modal-body">
+            <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered" role="grid">
+                <tr>
+                    <th scope="col" height="22" style="width: 3rem;font-weight: bold;">Sr.No</th>
+                    <th scope="col" height="22"  style="font-weight: bold;">Product Name</th>
+                    <th scope="col" height="22"  style="font-weight: bold;">Product Code</th>
+                     <th scope="col" height="22"  style="font-weight: bold;">Product UOM</th>
+                     <th scope="col" height="22"  style="font-weight: bold;">Unit Of Measure</th>
+                     <th scope="col" height="22"  style="font-weight: bold;">Product Description</th>
+                </tr>                      
+                <tbody>
+                    <aura:iteration items="{!v.showSelectedProductList}" var="selProd" indexVar="rowIndex">
+                        <tr class="slds-hint-parent">
+                            <td>{!rowIndex + 1}</td>
+                            <th data-label="Product Name" scope="row">
+                                <div class="slds-truncate" title="{!selProd.Name}">{!selProd.Name}</div>  
+                            </th>
+                            <td data-label="Product Code">
+                               <lightning:input name="input2"  value="{!selProd.ProductCode}"/>
+                            </td>
+                            <td data-label="Product UOM">
+                               <lightning:input name="input3"  value="{!selProd.Product_UOM__c}"/>
+                            </td>
+                             <td data-label="Unit Of Measure">
+                               <lightning:input name="input3"  value="{!selProd.QuantityUnitOfMeasure}"/>
+                            </td>
+                            <td data-label="Product Description">
+                               <lightning:input name="input4"  value="{!selProd.Description}"/>
+                            </td>
+                            
+                        </tr>
+                        
+                    </aura:iteration> 
+                </tbody>
+            </table>
+        </div>
+    </aura:if>
+    
+    <div class="slds-col modal-footer slds-modal__footer">   
+        <aura:if isTrue="{!v.showBackButton}">
+            <lightning:button variant="neutral" label="Back" onclick="{! c.backClick }" /> 
+        </aura:if>
+        
+        <lightning:button variant="neutral" label="Cancel" onclick="{! c.cancelClick }" />  
+        <aura:if isTrue="{!v.showSaveButton}">
+            <lightning:button variant="brand" label="Next" onclick="{! c.saveClick }" />
+        </aura:if>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,45 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <!-- Progress Bar-->
+    <aura:attribute name="selectedStep" type="String" default="LoanInfo"/>
+    <div calss="slds-m-around_xx-large">
+        Hello
+        
+        <lightning:progressIndicator currentStep="{!v.selectedStep}" type="path">
+            <lightning:progressStep label="Loan Info" value="LoanInfo" onclick="{!c.selectLoanInfo}"/>
+            <lightning:progressStep label="Basic Info" value="BasicInfo" onclick="{!c.selectBasicInfo}"/>
+            <lightning:progressStep label="Residence Info" value="ResidenceInfo" onclick="{!c.selectResidenceInfo}"/>
+            <lightning:progressStep label="Income Info" value="IncomeInfo" onclick="{!c.selectIncomeInfo}"/>
+        </lightning:progressIndicator>
+        
+        <div class="slds-p-around_medium">
+            <div class="{!v.selectedStep == 'LoanInfo' ? 'slds-show' : 'slds-hide'}">
+                <p><b>Step 1</b></p>
+            </div>
+            
+            <div class="{!v.selectedStep == 'BasicInfo' ? 'slds-show' : 'slds-hide'}">
+                <p><b>Step 2</b></p>
+            </div>
+            
+            <div class="{!v.selectedStep == 'ResidenceInfo' ? 'slds-show' : 'slds-hide'}">
+                <p><b>Step 3</b></p>
+            </div>
+            
+            <div class="{!v.selectedStep == 'IncomeInfo' ? 'slds-show' : 'slds-hide'}">
+                <p><b>Step 4</b></p>
+            </div>
+        </div>
+        
+        <div>
+            <button disabled="{!v.selectedStep != 'LoanInfo' ? '' : 'disabled'}" class="slds-button slds-button_success" onclick="{!c.handlePrev}">BACK</button>
+            <aura:if isTrue="{!v.selectedStep != 'IncomeInfo'}">
+                <button class="slds-button slds-button_brand" onclick="{!c.handleNext}">NEXT</button>
+            </aura:if>
+            <aura:if isTrue="{!v.selectedStep == 'IncomeInfo'}">
+                <button class="slds-button slds-button_brand" onclick="{!c.handleFinish}">FINISH</button>
+            </aura:if>
+        </div>
+        
+    </div>
+    <!-- End of Progress Bar -->
+    
+</aura:component>

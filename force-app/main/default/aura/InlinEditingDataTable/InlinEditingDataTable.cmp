@@ -1,0 +1,31 @@
+<!--
+ * @author [Dinesh B]
+ * @email dinesh.b@utilitarianLab.com
+ * @create date 2022-08-28 12:37:16
+ * @modify date 2022-08-28 12:37:16
+ * @desc [description]
+ -->
+
+<aura:component controller="AuraCompUtilityClas" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global"  >
+	<aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="draftValues" type="Object" default="[]"/>
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+    <aura:handler name="init" value="{! this }" action="{! c.doInit }"/>
+
+    
+     <lightning:card title="Inline edit Opportunity with refresh view" class="slds-text-title--caps slds-p-around_medium" iconName="standard:contact">
+
+    <!-- the height of the datatable -->
+    <div style="height: 260px">
+        <lightning:datatable aura:id="dtTable"
+                             columns="{! v.columns }"
+                             data="{! v.data }"
+                             keyField="Id"
+                             draftValues="{! v.draftValues }"
+                             onsave="{! c.handleSave }"
+                             />
+        
+    </div>
+          </lightning:card>
+</aura:component>

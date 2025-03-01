@@ -1,0 +1,24 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="sum" type="integer"/>
+    <aura:attribute name="mul" type="integer"/>
+    <aura:attribute name="div" type="integer"/>
+    <aura:attribute name="sub" type="integer"/>
+    
+    <div class="slds-p-around_small slds-grid slds-no-flex  slds-align_absolute-left">
+        <div class="slds-col slds-size_6-of-12 ">
+            <lightning:input type="number" label="Enter Number" aura:id="num1"/>
+            <lightning:input type="number" label="Enter Number" aura:id="num2"/>
+            <div class="slds-grid">
+                <lightning:input type="submit" class="slds-p-around_medium" value="Add" onclick="{!c.addFunction}"/>
+                <lightning:input type="submit" class="slds-p-around_medium" value="Mul" onclick="{!c.mulFunction}"/>
+                <lightning:input type="submit" class="slds-p-around_medium" value="Div" onclick="{!c.divFunction}"/>
+                <lightning:input type="submit" class="slds-p-around_medium" value="Sub" onclick="{!c.subFunction}"/>
+            </div>
+            
+            <p style="font-weight:bold; font-size:12pt;"> Sum is : <strong>{!v.sum}</strong> </p>
+            <p style="font-weight:bold; font-size:12pt;"> Multiplication is : <strong>{!v.mul}</strong> </p> 
+            <p style="font-weight:bold; font-size:12pt;"> Division is : <strong>{!v.div}</strong> </p> 
+            <p style="font-weight:bold; font-size:12pt;"> Subtraction is : <strong>{!v.sub}</strong> </p> 
+        </div>
+    </div>
+</aura:component>

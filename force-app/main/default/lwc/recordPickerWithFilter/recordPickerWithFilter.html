@@ -1,0 +1,12 @@
+<template>
+
+    <lightning-card variant="Narrow" title="Lightning Record Picker in LWC" icon-name="standard:record_lookup">
+        <div class="slds-p-horizontal_small">
+            <lightning-record-picker label="Select a record" placeholder="Search..." object-api-name="User"
+                onchange={handleChange} matching-info={matchingInfo} display-info={displayInfo}>
+            </lightning-record-picker>
+            <br/><br/>
+            <h3> Selected Record Id : {id} </h3>
+        </div>
+    </lightning-card>
+</template>

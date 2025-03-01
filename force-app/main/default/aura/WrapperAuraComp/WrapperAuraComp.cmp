@@ -1,0 +1,47 @@
+<aura:component controller="AuraCompUtilityClas" >
+    <aura:handler name="init" value="{!this}" action="{!c.loadData}"/>
+    <aura:attribute name="wrapperList" type="Object"/>
+    
+    <lightning:card class="slds-p-around_large" >
+        <div class="sldsp-p-around_large">
+            <h1 style="font-size:25px;">{!v.wrapperList.message}</h1> 
+            <br/>
+            <p style="color:red">Total Contacts = {!v.wrapperList.contactCount}</p>
+            
+            <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+                
+                <thead>
+                    <tr class="slds-text-title--caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Name">Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Email">Email</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Phone">Phone</div>
+                        </th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <aura:iteration items="{!v.wrapperList.conList}" var="con">
+                        <tr>
+                            <th scope="row">
+                                <div class="slds-truncate" title="{!con.Name}">{!con.Name}</div>
+                            </th>
+                             <th scope="row">
+                                <div class="slds-truncate" title="{!con.Email}">{!con.Email}</div>
+                            </th>
+                             <th scope="row">
+                                <div class="slds-truncate" title="{!con.Phone}">{!con.Phone}</div>
+                            </th>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+                
+            </table>
+        </div>
+    </lightning:card>
+    
+</aura:component>

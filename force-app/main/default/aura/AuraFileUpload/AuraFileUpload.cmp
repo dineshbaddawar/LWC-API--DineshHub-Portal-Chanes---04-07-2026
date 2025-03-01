@@ -1,0 +1,32 @@
+<aura:component controller="AuraCompUtilityClas" implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="fileName" type="String" default="No File Selected..."/>
+    
+    <aura:html tag="style">
+        .slds-modal__footer{
+        display:none !important;
+        }      
+        .slds-modal__content{
+         background-color: lightblue;
+        height:initial !important; 
+        max-height:330px !important;
+         
+        }
+    </aura:html>
+    
+    <lightning:card title="Upload Attachement Using Aura" iconName="utility:upload" class="slds-p-around_small">
+        <lightning:input aura:id="fileuplod" onchange="{!c.handleFilesChange}" type="file" multiple="false"/>
+        <div class="slds-text-body_small slds-text-color_success">
+            <b>  {!v.fileName} </b>
+        </div>  
+        <br/>
+        <span style=" margin-right: 25rem;">
+            <lightning:button label="Cancel" onclick="{!c.handleCancel}"  />
+        </span>
+        
+        
+        <lightning:button label="Save" onclick="{!c.handleSave}" variant="brand"/>
+        
+        
+    </lightning:card>
+</aura:component>

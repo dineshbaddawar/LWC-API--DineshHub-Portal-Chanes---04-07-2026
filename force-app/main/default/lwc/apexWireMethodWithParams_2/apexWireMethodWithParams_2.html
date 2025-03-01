@@ -1,0 +1,23 @@
+<template>
+   <lightning-card title="Search Opportunity 1" icon-name="standard:opportunity">
+     <lightning-layout>
+          <lightning-layout-item size="6">
+               <div class="slds-m-around_small">
+                    <lightning-input placeholder="Search here" onchange={searchOpportunity}></lightning-input>
+                    <br/>
+
+                    <template for:each={result.data} for:item="opp">
+                         <div key={opp.Id} class="slds-m-around_small">
+                              <lightning-tile label={opp.Name} type="media">
+                                   <lightning-icon slot="media" icon-name="standard:groups"></lightning-icon>
+                                   <p class="slds-truncate">
+                                        <lightning-formatted-text value={opp.StageName}></lightning-formatted-text>
+                                   </p>
+                              </lightning-tile>
+                         </div>
+                    </template>
+               </div>
+          </lightning-layout-item>
+     </lightning-layout>
+   </lightning-card>
+</template>

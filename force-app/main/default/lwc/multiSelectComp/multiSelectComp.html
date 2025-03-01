@@ -1,0 +1,23 @@
+<template>
+	   <lightning-quick-action-panel header="Custom Multiselect Lookup">
+	
+		<div class="slds-m-around_medium">
+			<c-lwc-multi-lookup object-name="Contact" field-name="Email" label="Search Contacts"
+				onselected={handleSelectedRecords} selected-contact-list={selectedContactList} required>
+			</c-lwc-multi-lookup>
+		</div>
+		<div class="slds-m-around_medium">
+			<template if:true={selectedContacts}>
+				<p>Selected Contacts:</p> <br/>
+				<ul>
+					<template for:each={selectedContacts} for:item="contact">
+						<ul key={contact.recId} style="padding:5px;">
+							<li key={contact.recId}>  <lightning-icon icon-name="standard:contact" alternative-text="Account"></lightning-icon> <b style="padding:3px;">Email : {contact.recName} || Id : {contact.recId}</b></li>
+						</ul>
+					</template>
+				</ul>
+			</template>
+		</div>
+	
+	   </lightning-quick-action-panel>
+</template>

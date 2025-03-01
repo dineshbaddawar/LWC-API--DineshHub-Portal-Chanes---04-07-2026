@@ -1,0 +1,100 @@
+<aura:component controller="UtilityClass" >
+    <aura:handler name="init" value="{!this}" action="{!c.getAccRecord}"/>
+    <aura:handler event="force:refreshView" action="{!c.getAccRecord}"/>
+    <aura:attribute name="getdatalist" type="list"/>
+    <aura:attribute name="isShowCreateAccountDialogbox" type="boolean" default="false"/>
+    <aura:attribute name="editForm" type="boolean" default="false"/>
+    <aura:attribute name="getAccount" type="Account"/>
+    <aura:attribute name="accountId" type="string"/>
+    
+    <div class="slds-table">
+        <table class="slds-table slds-table--striped slds-table_bordered" >
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th><button class="slds-button slds-button_neutral" onclick="{!c.OpencreateRecordBox}">CREATE NEW ACCOUNT</button></th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Account Site</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.getdatalist}" var ="acc" >     
+                    <tr>
+                        <td>{!acc.Name}</td>
+                        <td>{!acc.Phone}</td>
+                        <td>{!acc.Site}</td>
+                        <td><button class="slds-button slds-button_brand"  onclick="{!c.editAccount}" data-accId="{!acc.Id}">EDIT</button> </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        
+        <aura:if isTrue="{!v.isShowCreateAccountDialogbox}">
+            
+            <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon  iconName="utility:close"
+                                              onclick="{!c.createAccount}"  
+                                              alternativeText ="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                            <aura:if isTrue="{!v.editForm}">
+                            Edit Account
+                                <aura:set attribute="else">
+                                Add Account
+                                </aura:set>
+                            </aura:if>
+                            </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <aura:if isTrue ="{!v.editForm}">
+                            <lightning:input type="text" aura:id="editName" label="Enter Account Name" value="{!v.getAccount.Name}"/>
+                            <lightning:input type="text" aura:id="editPhone" label="Enter Account Phone" value="{!v.getAccount.Phone}"/>
+                            <lightning:input type="picklist" aura:id ="editSite" label="Enter Account Site" value="{!v.getAccount.Site}"/>
+                            
+                            <aura:set attribute="else">
+                                <lightning:input type="text" aura:id="accName" label="Enter Account Name"/>
+                                <lightning:input type="number" aura:id="accPhone" label="Enter Account Phone"/>
+                                <lightning:input type="text" aura:id ="accSite" label="Enter Account Site"/>                    
+                            </aura:set>
+                            
+                        </aura:if>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="neutral"
+                                          label="Cancel"
+                                          title="Cancel"
+                                          onclick="{!c.createAccount }"/>
+                        
+                             <aura:if isTrue="{!v.editForm}">
+                            <lightning:button variant="brand"
+                                          label="Edit Account"
+                                          title="Edit Account"
+                                          onclick="{!c.updateAccount}"/>
+                                <aura:set attribute="else">
+                                  <lightning:button variant="brand"
+                                          label="Create Account"
+                                          title="Create Account"
+                                          onclick="{!c.createNewAccount}"/>
+                                </aura:set>
+                            </aura:if>
+                        
+                    
+                    </footer>
+                    
+                </div>          
+            </section>
+            
+        </aura:if>
+        
+    </div>
+</aura:component>

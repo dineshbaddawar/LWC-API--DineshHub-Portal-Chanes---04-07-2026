@@ -1,0 +1,24 @@
+<aura:component controller="AuraCompUtilityClas" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    
+    <!-- Declaring the Event Handler-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" Description="Calling doInit function on  component load to get picklist values"/>
+    
+    <!-- Declaring the Attribute-->
+    <aura:attribute name="LeadTypeList" type="List" default="[]" Description="LeadType picklist Values"/>
+    <aura:attribute name="selectedLeadTypeList" type="List" default="[]" Description="Selected LeadType pickList Values"/>
+    
+    <lightning:card title="Multi Select Picklist Comp" iconName="custom:custom5">
+        
+        <div calss="slds-m-around_xx-large">
+            <lightning:dualListbox aura:id="selectLeadType"
+                                   name="LeadType"
+                                   label="Select LeadType1"
+                                   sourceLabel="Available LeadType"
+                                   selectedLabel="Selected LeadType2"
+                                   options="{!v.LeadTypeList}"
+                                   value="{!v.selectedLeadTypeList}"
+                                   onchange="{!c.handleLeadTypeChange}"/>
+            <lightning:button variant="brand" label="Get Selected LeadType" onclick="{!c.getSelectedLeadType}"/>
+        </div>
+    </lightning:card>
+</aura:component>

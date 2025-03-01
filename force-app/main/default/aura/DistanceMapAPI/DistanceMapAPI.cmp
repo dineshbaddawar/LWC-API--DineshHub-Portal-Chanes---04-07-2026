@@ -1,0 +1,75 @@
+<aura:component controller="GetDistanceMatrixAPI" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="accRecord" type="Account"/>
+    <aura:attribute name="destrinationcode" type="String"/>
+    <aura:attribute name="origincode" type="string"/>
+    <aura:attribute name="ShowTable" type="Boolean" default="false"/>
+    <aura:attribute name="destinationAddressValue" type="String"/>
+    <aura:attribute name="originAddressValue" type="String"/>
+    <aura:attribute name="distance" type="String"/>
+    <aura:attribute name="duration" type="String"/>
+    <lightning:card   class="slds-p-around_medium slds-text-align_center">
+        <h2><b style="font-size:25px;font-family:monospace;">Distance Map API</b></h2>
+        <aura:html tag="style">
+            .slds-table { 
+            
+            background-color: rgb(0 0 0 / 16%);
+            font-size:16px;
+            } 
+            
+            
+        </aura:html> 
+        
+        <table class="center" style="width: 50rem !important;">
+            <center>
+                <tr>
+                    <!--Origin Input-->
+                    
+                    <td style="padding: 5px;font-family: monospace;">
+                        <lightning:input type="number" class="style1" style="width: 14rem;" aura:id="destination" label="Enter Destination Pincode" onchange="{!c.changeHandler}"  placeholder="Enter Origin ZIP"  />
+                    </td>
+                    <!--Destination Input-->
+                    <td style="padding: 5px;">
+                        <lightning:input type="number" class="style1" style="width: 14rem;"  aura:id="origin" label="Enter Origin Pincode"  onchange="{!c.changeHandler}"  placeholder="Enter Destination ZIP"  />
+                    </td>
+                </tr>
+                <br/>
+                <!--Submit Button-->
+                <button class="slds-button slds-button_brand" onclick="{!c.GetDistance}">Get Distance</button>
+            </center>
+        </table><br/><br/>
+        <!--Input table end-->
+        
+        <aura:if isTrue="{!v.ShowTable}">
+            <center>
+                <!--Output Table-->
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:35rem !important ; font-family: monospace; font-size: 20px; ">
+                    <tr>
+                        <th class="dinesh">Origin Address</th>
+                        <th>Destination Address</th>
+                    </tr>
+                    <tr>
+                        <td> {!v.originAddressValue}</td>
+                        <td>{!v.destinationAddressValue}</td>
+                        
+                    </tr>
+                    
+                    <br/>
+                    
+                    <tr>
+                        <th>Distance</th>
+                        <th>Duration</th>
+                    </tr>
+                    <tr>
+                        <td> {!v.distance}</td>
+                        <td> {!v.duration}</td>
+                        
+                    </tr>
+                    
+                </table>
+                <!--Output table end-->
+            </center>
+        </aura:if>
+        
+    </lightning:card>
+</aura:component>

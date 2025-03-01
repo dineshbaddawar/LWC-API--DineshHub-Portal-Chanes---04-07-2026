@@ -1,0 +1,19 @@
+.custom-container{
+	color : black;
+}
+.custom-delete-button {
+    background-color: red; /* Red background */
+    border: none; /* Remove any default borders */
+    border-radius: 50%; /* Circular button */
+    height: 2.5rem; /* Standard size for consistency */
+    width: 2.5rem; /* Same width as height for a circle */
+    display: flex; /* Center icon */
+    align-items: center; /* Center icon vertically */
+    justify-content: center; /* Center icon horizontally */
+    padding: 0; /* Remove extra padding */
+}
+
+.custom-delete-button lightning-primitive-icon {
+    fill: white; /* Change icon color to white for visibility */
+    margin: 0; /* Ensure no extra spacing */
+}

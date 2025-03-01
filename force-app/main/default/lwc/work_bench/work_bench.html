@@ -1,0 +1,77 @@
+<template>
+    <div class="custom-workbench">
+        <div class="header">
+            <span class="title">🚀 Custom Workbench</span>
+            <span class="user-info">{currentUserName} at Utilitarian Labs on API 58.0</span>
+        </div>
+    </div>
+
+    <br/>
+
+    <lightning-card title="Run your query" class="custom-card">
+        <p slot="footer">By {currentUserName}</p>
+
+        <div class="slds-p-around_medium">
+            <lightning-combobox 
+                class="cool-dropdown" 
+                label="Choose the object" 
+                options={options} 
+                onchange={optionHandler}>
+            </lightning-combobox>
+        </div>
+
+        <div class="slds-p-around_medium">
+            <lightning-dual-listbox 
+                class="cool-dual-listbox" 
+                label="Choose the fields" 
+                options={fieldsOption} 
+                onchange={fieldsHandler}>
+            </lightning-dual-listbox>
+            
+            <br/><p class="filter-title">✨ Add filter logic</p>
+            
+            <div class="filter">
+                <lightning-combobox 
+                    class="cool-dropdown" 
+                    label="Choose the fields" 
+                    options={fieldsOption} 
+                    onchange={filterFieldHandler}>
+                </lightning-combobox>
+
+                <lightning-combobox 
+                    class="cool-dropdown" 
+                    label="Choose the operator" 
+                    options={filterOptions} 
+                    onchange={filterOperatorHandler}>
+                </lightning-combobox>
+
+                <lightning-textarea 
+                    class="cool-textarea1" 
+                    label="Add the values" 
+                    onchange={filterValueHandler}>
+                </lightning-textarea>
+
+                <lightning-button 
+                    variant="brand" 
+                    label="Add Filter" 
+                    onclick={filterHandler} 
+                    class="cool-button">
+                </lightning-button>
+            </div>
+        </div>
+
+        <div class="slds-p-around_medium">
+            <p class="final-query-title">📜 Your final query</p>
+            <lightning-textarea class="cool-textarea"></lightning-textarea>
+        </div>
+
+        <div class="slds-p-around_medium">
+            <lightning-button 
+                variant="success" 
+                label="🚀 Run" 
+                onclick={runQueryHandler} 
+                class="run-button">
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>

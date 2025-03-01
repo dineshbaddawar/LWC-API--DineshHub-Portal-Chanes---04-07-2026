@@ -1,0 +1,19 @@
+<template>
+     <lightning-card title="Upload Profile Picture" icon-name="standard:file">
+         <div class="slds-p-around_medium">
+             <lightning-input type="file" 
+             accept=".png"
+             label="Attachment" onchange={openfileUpload}></lightning-input>
+         </div>
+
+         <template if:true={isLoaded} class="slds-is-relative">
+               <lightning-spinner alternative-text="Loading...">
+               </lightning-spinner>
+          </template>
+
+         <template if:true={fileData}>
+             <p>{fileData.filename}</p>
+         </template>
+         <lightning-button variant="brand" label="submit" title="Submit" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+     </lightning-card>
+ </template>

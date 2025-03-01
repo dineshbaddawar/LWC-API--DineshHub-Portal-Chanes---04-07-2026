@@ -1,0 +1,104 @@
+/* Cool background and animations */
+.custom-workbench {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+/* Card styling */
+.custom-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+.custom-card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Filter section */
+.filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.filter-title {
+    font-weight: bold;
+    color: #1e3c72;
+    font-size: 18px;
+}
+
+/* Styled inputs */
+.cool-dropdown,
+.cool-textarea,
+.cool-textarea1,
+.cool-dual-listbox {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.cool-button {
+    background: #ff7eb3;
+    border-radius: 20px;
+    transition: background 0.3s ease-in-out;
+}
+
+.cool-button:hover {
+    background: #ff5794;
+}
+
+/* Run button */
+.run-button {
+    background: #28a745;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+.run-button:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

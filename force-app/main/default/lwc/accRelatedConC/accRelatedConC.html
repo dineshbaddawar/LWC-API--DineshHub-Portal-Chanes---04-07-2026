@@ -1,0 +1,33 @@
+<template>
+     <lightning-card title='Tab In Accordian' class="slds-p-around_small" icon-name="custom:custom11">
+         <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+             <thead>
+                 <tr class="slds-line-height_reset">
+                   <!-- <th class="" scope="col">
+                     <div class="slds-truncate" title="Account Name">Account Name</div>
+                   </th> -->
+                   <th class="" scope="col">
+                     <div class="slds-truncate" title="Parent Account">Contacts</div>
+                   </th>
+                  
+                 </tr>
+               </thead>
+               <tbody>
+                 <template for:each={data1} for:item="acc"> 
+                 <tr class="" key = {acc.Id}>
+                         <!-- <td data-label="Account Name">
+                             <div class="slds-cell-wrap"><a href="javascript:void(0);">{acc.Name}</a></div>
+                         </td> -->
+                         <td data-label="Contacts">
+                             <template for:each={acc.Contacts} for:item="con">
+                                 <div key={con.Id}>   
+                             {con.Name}
+                         </div>
+                         </template>
+                         </td>
+                 </tr>
+                 </template>
+             </tbody>
+         </table>
+     </lightning-card>
+ </template>

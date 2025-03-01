@@ -1,0 +1,7 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="inputValue" type="String"/>
+    <Lightning:card>
+        <c:lightningInputFieldInLwc onvaluechange="{!c.getValueFromLwc}"/><br/>
+        The value from Lwc is :- {!v.inputValue}
+    </Lightning:card>
+</aura:component>

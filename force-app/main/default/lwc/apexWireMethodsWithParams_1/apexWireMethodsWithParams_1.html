@@ -1,0 +1,26 @@
+<template>
+     <lightning-card title="Search Contacts">
+         <lightning-layout>
+             <lightning-layout-item size="6">
+                 <!-- Displaying Contacts. -->
+                 <div class="slds-p-left_medium">
+                     <lightning-input placeholder="Enter Account Name" onchange={changeSearchText}></lightning-input>
+                     <br/>
+                     
+                     <!-- To display Contact if list is not null-->
+                     <template for:each={conList.data} for:item="con">
+                         <div key={con.Id} class="slds-p-around_medium lgc-bg">
+                             <lightning-tile label={con.Name} type="media">
+                                 <lightning-icon slot="media" icon-name="standard:groups"></lightning-icon>
+                                 <p class="slds-truncate">
+                                     <lightning-formatted-phone value={con.Phone}></lightning-formatted-phone>
+                                 </p>
+                             </lightning-tile>
+                         </div>
+                     </template>
+                     
+                 </div>
+             </lightning-layout-item>
+         </lightning-layout>
+     </lightning-card>
+ </template>

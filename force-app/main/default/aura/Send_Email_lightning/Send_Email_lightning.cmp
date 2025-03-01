@@ -1,0 +1,41 @@
+<aura:component controller="AuraCompUtilityClas" implements="flexipage:availableForRecordHome,force:lightningQuickActionWithoutHeader,force:hasRecordId" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="pickListValuesGender" type="List"/>
+    <aura:attribute name="pickListValuesContactType" type="List"/>
+    
+    <div class="">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <!-- Lightning Select Section-->
+                <h1><b>Send CGPA</b></h1> 
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <lightning:select aura:id="conGener" label="Select Gender" onchange="{!c.geSelectedPicValue}" >
+                    <option value="">--None--</option>
+                    <aura:iteration items="{!v.pickListValuesGender}" var="item">
+                        <option value="{!item}">{!item}</option>
+                    </aura:iteration>
+                </lightning:select>
+                <br/>
+                <lightning:select aura:id="conType" label="Select Contact Type" onchange="{!c.geSelectedPicValue}" >
+                    <option value="">--None--</option>
+                    <aura:iteration items="{!v.pickListValuesContactType}" var="item">
+                        <option value="{!item}">{!item}</option>
+                    </aura:iteration>
+                    
+                </lightning:select>
+            </div>
+            <footer class="slds-modal__footer">
+                <lightning:button variant="neutral"
+                                  label="Cancel"
+                                  title="Cancel"
+                                  onclick="{! c.closeModel }"/>
+                <lightning:button variant="brand"
+                                  label="Send"
+                                  title="Send"
+                                  onclick="{!c.sendEmailToContact}"/>
+            </footer>
+        </div>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,76 @@
+<aura:component   implements="force:lightningQuickActionWithoutHeader,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="SelectedWorkshop" type="String"/>
+    <aura:attribute name="authcode" type="String"/>
+    <aura:attribute name="SobjectrecId" type="String"/>
+    <aura:attribute name="ShowTeamsMeetingCmp" type="boolean" default="false"/>
+    <aura:attribute name="ShowToCreateVisit" type="boolean" default="false"/>
+    <aura:attribute name="firstScreen" type="boolean" default="true"/>
+    <aura:attribute name="recordId" type="String" />
+    
+    <aura:attribute name="visitListTo" type="List" />
+    
+    <aura:attribute name="street" type="String" />
+    <aura:attribute name="city" type="String" />
+    <aura:attribute name="country" type="String" />
+    <aura:attribute name="province" type="String" />
+    <aura:attribute name="postalCode" type="integer" />
+    
+    <aura:attribute name="workshopDate" type="Date" />
+    <aura:attribute name="attendes" type="String" />
+    <aura:attribute name="Description" type="String" />
+    
+    <aura:attribute name="objectAPIName" type="String" />
+    
+    <aura:attribute name="CloseModalForShowingOtherComponent" type="boolean" default="false"/>
+    
+    <aura:handler name="sampleCmpEvent" event="c:CloseModalEvent" action="{!c.parentComponentEvent}"/>
+    
+    <aura:html tag="style">
+        .slds-p-around–medium {
+        padding: 0rem !important;
+        }
+        .slds-modal__content{
+        overflow-x:hidden !important;
+        height:unset !important;
+        max-height:unset !important;
+        }
+        .cuf-content {
+        padding: 0 0rem !important;
+        }
+    </aura:html>
+    
+    <aura:if isTrue="{!v.firstScreen}">
+        <div class="modal-header slds-modal__header slds-size_1-of-1">
+            <h4 class="title slds-text-heading--medium">Choose Your Workshop</h4>
+        </div>
+        
+        <div class="slds-modal__content slds-p-around--x-small  slds-size_1-of-1 slds-is-relative slds-scrollable">
+            <lightning:card>
+                <lightning:input type="radio" name="input1" label="Online Product Workshop" value="Online Workshop" onchange="{!c.HandleChange}"/>
+                <br></br>
+                <lightning:input type="radio" name="input1" label="Offline Product Workshop" value="Site Workshop" onchange="{!c.HandleChange}"/>
+            </lightning:card>
+        </div>
+        
+        <div class="modal-footer slds-modal__footer slds-size_1-of-1">
+            <div class="slds-align_absolute-center">
+               
+                <lightning:button onclick="{!c.handleCancel}" variant="Destructive"  label="Cancel"></lightning:button>
+                 <aura:if isTrue="{!OR(v.SelectedWorkshop!=null,v.SelectedWorkshop!=undefined)}">
+                    <lightning:button onclick="{!c.handleClickNext}" variant="brand"  label="Next"></lightning:button>
+                </aura:if>
+            </div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.ShowTeamsMeetingCmp}">
+        <c:EventSchedular recordId="{!v.recordId}" authcode="{!v.authcode}"  SobjectrecId="{!v.SobjectrecId}" objectAPIName="{!v.objectAPIName}" CloseModalForShowingOtherComponent="{!v.CloseModalForShowingOtherComponent}"></c:EventSchedular>    
+    </aura:if>
+    <aura:if isTrue="{!v.ShowToCreateVisit}">
+        
+        <!--c:CreateSurveyVisitOpportunity recordId="{!v.recordId}" CloseModalForShowingOtherComponent="{!v.CloseModalForShowingOtherComponent}">></c:CreateSurveyVisitOpportunity-->
+        Visit Record
+    </aura:if>
+</aura:component>

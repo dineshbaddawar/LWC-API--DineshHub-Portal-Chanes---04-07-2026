@@ -1,0 +1,23 @@
+<aura:component controller="AuraCompUtilityClas" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global">
+    <!---on component load call doInit javaScript function and fetch records from server–-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="accList" type="List"/>
+   
+    <lightning:card title="Accordion Data Show And Expand" iconName="custom:custom3">
+    
+    <div class="slds-m-around_x-large">
+    <lightning:accordion>
+        <aura:iteration items="{!v.accList}" var="acc">
+        <lightning:accordionSection name="{!acc.Name}" label="{!acc.Name}">
+            <aura:set attribute="body">
+                <p><b>Name:</b> {!acc.Name}</p>
+                <p><b>Phone:</b> {!acc.Phone}</p>
+                <p><b>Description:</b> {!acc.Description}</p>
+                <p><b>AnnualRevenue:</b> {!acc.AnnualRevenue}</p>
+            </aura:set>
+            </lightning:accordionSection>
+        </aura:iteration>
+        </lightning:accordion>
+    </div>
+        </lightning:card>
+</aura:component>

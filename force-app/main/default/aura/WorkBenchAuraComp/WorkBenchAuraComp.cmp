@@ -1,0 +1,14 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="ShowQueryEditor" type="Boolean" default="true"/>
+    <aura:attribute name="ShowQueryResult" type="Boolean" default="false"/>
+    <aura:attribute name="RunResult" type="string"/>
+    <aura:attribute name="dataReceived" type="String"/>
+    
+    <aura:if isTrue="{!v.ShowQueryResult}">
+        <c:run_query/>
+    </aura:if>
+    <aura:if isTrue="{!v.ShowQueryEditor}">
+        <c:work_bench onsenddata="{!c.receiveLWCData}" aura:id="lwcComp" />
+    </aura:if>
+</aura:component>

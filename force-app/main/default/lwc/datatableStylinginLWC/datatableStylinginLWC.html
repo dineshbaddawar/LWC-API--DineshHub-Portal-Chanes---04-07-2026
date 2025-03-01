@@ -1,0 +1,21 @@
+<template>
+<lightning-card title="Datatable styling in lwc">
+        <template if:true={tableData}>
+            <div class="myTable">
+            <lightning-datatable
+            key-field="Id"
+            data={tableData}
+            columns={columns}
+            hide-checkbox-column
+            ></lightning-datatable>
+        </div>
+        </template>
+       
+    </lightning-card>
+    <div>
+    <lightning-combobox label="Ownership" options={OwnerShipoptions} onchange={handlechange} placeholder="Select Ownership" required name="Ownership"> </lightning-combobox>
+    </div>
+    <div class="slds-p-around_medium">
+            <lightning-combobox  label="Industry Type" value={value} options={picklistFieldValues} onchange={handleChangeApex} > </lightning-combobox>
+        </div>
+</template>

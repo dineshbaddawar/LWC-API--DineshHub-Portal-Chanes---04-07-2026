@@ -1,0 +1,81 @@
+<template>
+
+       <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <span></span>
+            </div>
+
+        </div><br/>
+
+
+           <div class="slds-scrollable">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-scrollable">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Name">OpplineItem Id</div>
+                    </th>
+                    <!-- <th class="" scope="col">
+                        <div class="slds-truncate " title="Name">Opportunity Name</div>
+                    </th> -->
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Name">Description</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Name">Quantity</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="">Total Price</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Net Total">Sales Price</div>
+                    </th>
+                    <!-- <th class="" scope="col" >
+                        <div class="slds-truncate" title="">Product Name</div>
+                    </th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={oppLineItem} for:item="opp">
+                    <tr key={opp.Id}>
+                          <th scope="col">
+                            <div>{opp.Id}</div>
+                        </th>
+                           <!-- <th scope="col">
+                            <div>{opp.Opportunity.Name}</div>
+                        </th> -->
+                        <th scope="col">
+                            <!-- <div>{opp.ProductCode}</div> -->
+                             <lightning-input type="text" data-id={opp.Id} name="input6" value={opp.Description} onchange={handleChange}></lightning-input>
+                        </th>
+                        <th scope="col">
+                            <lightning-input type="number" disabled="true" data-id={opp.Id} name="input6" value={opp.Quantity} onchange={handleChange}></lightning-input>
+                        </th>
+                        <th scope="col">
+                            <div>
+                                <lightning-input type="number" disabled="true" data-id={opp.Id} name="input6" value={opp.TotalPrice} onchange={handleChange}></lightning-input>
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div>
+                            <lightning-input  type="number" disabled="true" data-id={opp.Id} value={opp.UnitPrice}></lightning-input>
+                            </div> 
+                        </th>
+                      <!-- <th scope="col">
+                            <div>{opp.Product2.Name}</div>
+                        </th> -->
+  
+                    
+  
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div> 
+        <div class="slds-m-left_medium slds-m-top_medium slds-align_absolute-center">
+            <lightning-button disabled ={disable_savebutton} label="Submit" title="Non-primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button>
+        </div>
+
+
+</template>

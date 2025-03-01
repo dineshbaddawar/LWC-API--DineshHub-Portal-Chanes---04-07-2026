@@ -1,0 +1,10 @@
+<template>
+    <h2> Lead Datatable</h2>
+    <template if:true={leadList}>
+        <lightning-datatable data={leadList} columns={columns} key-field="Id">
+        </lightning-datatable>
+    </template>
+    <template if:true={error}>
+        {error}
+    </template>
+</template>

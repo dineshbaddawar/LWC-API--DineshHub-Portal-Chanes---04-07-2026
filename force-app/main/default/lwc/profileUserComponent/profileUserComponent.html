@@ -1,0 +1,20 @@
+<!-- profileUserComponent.html -->
+<template>
+    <lightning-card title="Profile and User Selection">
+        <div class="slds-p-around_medium">
+            <lightning-combobox
+                label="Select Profile"
+                value={selectedProfile}
+                options={profileOptions}
+                onchange={handleProfileChange}>
+            </lightning-combobox>
+
+            <lightning-combobox
+                label="Select User"
+                value={selectedUser}
+                onchange={handleUserNameChange}
+                options={userOptionsNew}>
+            </lightning-combobox>
+        </div>
+    </lightning-card>
+</template>
