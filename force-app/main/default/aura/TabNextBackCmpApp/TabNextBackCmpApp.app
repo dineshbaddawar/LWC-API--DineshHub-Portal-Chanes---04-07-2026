@@ -1,3 +1,3 @@
 <aura:application extends="force:slds" >
-    <c:profileUserComponent  />
+    <c:dinehsdevhomesitepage  />
 </aura:application>

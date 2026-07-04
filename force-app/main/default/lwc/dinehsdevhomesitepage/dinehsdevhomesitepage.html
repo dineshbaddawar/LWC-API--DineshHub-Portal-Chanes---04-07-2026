@@ -1,0 +1,138 @@
+<template>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="user-info">
+                <img src={userIcon} alt="User Icon" class="user-icon"  />
+                <span class="username">{userName}</span>
+                
+                <!-- Settings Icon -->
+                <div class="settings-container">
+                    <button class="settings-button" style="height: 40px;width: 40px;" onclick={handleSettingsClick}>
+                        <img src={settingsIcon} alt="Settings Icon" class="settings-icon" />
+                    </button>
+
+                    <!-- Settings Dropdown Menu -->
+                    <template if:true={showSettingsMenu}>
+                        <div class="settings-dropdown">
+                            <ul onclick={handleSettingsOptionClick}>
+                               <li data-option="profile">Profile Details</li>
+                                <li data-option="personal">Personal Details</li>
+                                <li data-option="upload">Upload Photo</li>
+                                <li data-option="logout ">Logout</li>
+                            </ul>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Left Panel -->
+            <div class="left-panel">
+                <ul>
+                    <li class="menu-item {lwcClass}" onclick={handleMenuClick} data-type="lwc">LWC</li>
+                    <li class="menu-item {apexClass}" onclick={handleMenuClick} data-type="apex">Apex</li>
+                    <li class="menu-item {auraClass}" onclick={handleMenuClick} data-type="aura">Aura</li>
+                    <li class="menu-item {vfClass}" onclick={handleMenuClick} data-type="vf">Visualforce Page</li>
+                    <li class="menu-item {moreClass}" onclick={handleMenuClick} data-type="more">More</li>
+                </ul>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <template if:true={isLwcActive}>
+                  
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={lwclistdata} for:item="comp" >
+                                <tr key={comp.Id}>
+                                    <td>{comp.srNo}</td>
+                                    <td>{comp.Name}</td>
+                                    <td>{comp.Type__c}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+
+                <template if:true={isApexActive}>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={apexlistdata} for:item="comp">
+                                <tr key={comp.Id}>
+                                    <td>{comp.srNo}</td>
+                                    <td>{comp.Name}</td>
+                                    <td>{comp.Type__c}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+
+                <template if:true={isAuraActive}>
+                  
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={auralistdata} for:item="comp">
+                                <tr key={comp.Id}>
+                                    <td>{comp.srNo}</td>
+                                    <td>{comp.Name}</td>
+                                    <td>{comp.Type__c}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+
+                <template if:true={isVfActive}>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={vfpagelistdata} for:item="comp">
+                                <tr key={comp.Id}>
+                                    <td>{comp.srNo}</td>
+                                    <td>{comp.Name}</td>
+                                    <td>{comp.Type__c}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+
+                <template if:true={isMoreActive}>
+                    <h2>More Features Coming Soon</h2>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

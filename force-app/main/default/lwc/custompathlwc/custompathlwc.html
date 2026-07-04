@@ -1,0 +1,17 @@
+<template>
+<lightning-card title="Current Status" icon-name="standard:sales_path">
+    <lightning-progress-indicator current-step={selectedvalue} type="path" variant="base">
+        <lightning-progress-step label="Aura" value="1" onclick={pathHandler}></lightning-progress-step>
+         <lightning-progress-step label="LWC" value="2" onclick={pathHandler}></lightning-progress-step>
+         <!-- <lightning-progress-step label="In Progress" value="3" onclick={pathHandler}></lightning-progress-step>
+        <lightning-progress-step label="Waiting on Submitter" value="4" onclick={pathHandler}></lightning-progress-step>
+        <lightning-progress-step label="Waiting on External Party" value="5" onclick={pathHandler}></lightning-progress-step>
+        <lightning-progress-step label="Waiting on Approval" value="6" onclick={pathHandler}></lightning-progress-step>
+        <lightning-progress-step label="CM Action Required" value="7" onclick={pathHandler}></lightning-progress-step>
+        <lightning-progress-step label="Solved" value="8" onclick={pathHandler}></lightning-progress-step> -->
+
+    </lightning-progress-indicator>
+    <!-- <br>
+        Selected Value is : <b>{selectedvalue}</b> -->
+    </lightning-card>
+</template>
