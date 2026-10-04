@@ -109,8 +109,11 @@ public class OutlookIntegration {
         String redirectUri = 'https://ecolibrium--dev--c.sandbox.vf.force.com/apex/OutlookintegrationPage';
         String authtype = 'authorization_code';
         
-        String Body = 'client_id=' + clientId + '&scope=' + scope  + '&client_secret=' + clientSecret + '&grant_type=client_credentials';
-        // Do not log the OAuth request body because it contains the client secret.
+        String Body = 'client_id=' + EncodingUtil.urlEncode(clientId, 'UTF-8')
+            + '&scope=' + EncodingUtil.urlEncode(scope, 'UTF-8')
+            + '&client_secret=' + EncodingUtil.urlEncode(clientSecret, 'UTF-8')
+            + '&grant_type=client_credentials';
+    // Do not log the OAuth request body because it contains the client secret.
         HttpRequest request = new HttpRequest();
         request.setMethod('POST');
         request.setEndpoint(endpoint);

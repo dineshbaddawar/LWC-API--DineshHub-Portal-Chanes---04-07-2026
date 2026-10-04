@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>OneDriveUsername</fullName>
+        <categories>Integration</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OneDrive integration username; configure privately per org</shortDescription>
+        <value>CONFIGURE_IN_ORG</value>
+    </labels>
+    <labels>
+        <fullName>OneDrivePassword</fullName>
+        <categories>Integration</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OneDrive integration password; configure privately per org</shortDescription>
+        <value>CONFIGURE_IN_ORG</value>
+    </labels>
+</CustomLabels>
