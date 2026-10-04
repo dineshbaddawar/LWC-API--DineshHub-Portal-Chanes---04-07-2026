@@ -103,8 +103,8 @@ public class OutlookIntegration {
     public static String GenerateAccesstokenwithNewFlow(){
         String ADtenentId = '9d94cb2f-05ce-4ac3-96a0-8a8a97437d2a';
         String endpoint = 'https://login.microsoftonline.com/' + ADtenentId + '/oauth2/v2.0/token';
-        String clientId = System.label.OutllokclientId;
-        String clientSecret = System.label.OutllokclientSecret;
+            String clientId = System.label.OutllokclientId;
+            String clientSecret = System.label.OutllokclientSecret;
         String scope = 'https://graph.microsoft.com/.default';
         String redirectUri = 'https://ecolibrium--dev--c.sandbox.vf.force.com/apex/OutlookintegrationPage';
         String authtype = 'authorization_code';

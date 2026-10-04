@@ -9,7 +9,7 @@ public class SlackIntegrationHelper {
         request.setEndpoint(endpoint);
         request.setMethod('POST');
         request.setHeader('Content-Type', 'application/json');
-        request.setHeader('Authorization', 'Bearer ' + SLACK_OAUTH_ACCESS_TOKEN);
+        request.setHeader('Authorization', 'Bearer ' + System.label.SLACK_OAUTH_ACCESS_TOKEN);
         request.setBody('{"channel": "' + channelId + '", "text": "' + message + '"}');
         
         Http http = new Http();
