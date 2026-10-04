@@ -38,12 +38,34 @@
             }
             
             /* Header animation */
+            .header {
+                position: relative;
+            }
+
             .header h3 {
                 font-size: 24px;
                 color: #4f46e5;
                 text-align: center;
                 margin-bottom: 20px;
                 animation: popIn 1.5s ease-in-out;
+            }
+
+            .back-to-login {
+                position: absolute;
+                top: 0;
+                left: 0;
+                color: #4f46e5;
+                border: 1px solid #4f46e5;
+                border-radius: 4px;
+                padding: 5px 10px;
+                font-size: 12px;
+                text-decoration: none;
+                transition: all 0.3s ease;
+            }
+
+            .back-to-login:hover {
+                color: #fff;
+                background-color: #4f46e5;
             }
             
             @keyframes popIn {
@@ -147,8 +169,8 @@
             </head>
             <body id="body-pd" ng-app="myApp" ng-controller="myCtrl">
                 <script>
-                
-                var leadObj;
+            var dineshLabsUrl = '{!$Label.DineshLabsURL}';   
+            var leadObj;
             leadObj = {
                 "Id" : 'ASDFGH',
                 "firstName" : '',
@@ -160,7 +182,6 @@
                 "pincode" : ''}
             var app = angular.module('myApp', [])
             .controller('myCtrl', function ($scope) {
-                debugger;
                 $scope.data = leadObj;
                 $scope.leadId = leadObj.Id;
                 $scope.states = [
@@ -174,7 +195,6 @@
                 ];
                 $scope.selectedOption = 'Select State';
                 $scope.onStateChange = function () {
-                    debugger;
                     var selecteState = $scope.selectedOption;
                     $scope.data.state = selecteState;
                 }
@@ -182,15 +202,15 @@
                     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                     return emailRegex.test(email);
                 };
-                
+                 $scope.validatePincode = function (pincode) {
+                        const pinRegex = /^[0-9]{6}$/;   // Only digits, exactly 6 length
+                        return pinRegex.test(pincode);
+                    };
+
                 $scope.isLoading = false;
                 $scope.saveleadData = function () {
                     debugger;
                     console.log('data == >'+$scope.data);
-                    if (!$scope.validateEmail($scope.data.email)) {
-                        swal('Invalid Email', 'Please enter a valid email address.', 'error');
-                        return;
-                    }
                     if($scope.data.firstName == undefined || $scope.data.firstName == ""){
                         swal('Required First Name', 'Please enter Firs tName.', 'error');
                         return;
@@ -203,17 +223,34 @@
                         swal('Required Email', 'Please enter Email.', 'error');
                         return;
                     }
+                    if (!$scope.validateEmail($scope.data.email)) {
+                        swal('Invalid Email', 'Please enter a valid email address.', 'error');
+                        return;
+                    }
+                    if (!$scope.validatePincode($scope.data.pincode)) {
+                        swal('Invalid Pincode', 'Please enter a 6‑digit numeric pincode.', 'error');
+                        return;
+                    }
+                    
                     $scope.isLoading = true;
                     var strinfydata = JSON.stringify($scope.data);
                     ContactFormController.createContactRecord(strinfydata, function (result, event) {
                         $scope.isLoading = false;
                         if (result == 'SUCCESS' && event.status) {
                             swal('success', 'Details submitted successfully', 'success');
+                            setTimeout(function () {
+                                window.location.href =dineshLabsUrl;
+                            }, 2000);
+                            // window.location.href = 'https://utilitarianlabs-apiorg-dev-ed.my.salesforce-sites.com/';
                             $scope.$apply();
-                        } else {
-                            swal('Error', 'Something went wrong.', 'error');
+                        }else if(result != 'SUCCESS'){
+                            swal('Error', result, 'error');
                             $scope.$apply();
                         }
+                            else {
+                                swal('Error', 'Something went wrong.', 'error');
+                                $scope.$apply();
+                            }
                     }
                                                              );
                 };
@@ -224,6 +261,7 @@
             <div class="card">
                 <div class="header">
                     <h3><b>Contact Details Information</b></h3>
+                    <a class="back-to-login" href="#" onclick="window.location.href = dineshLabsUrl; return false;">Back to login</a>
                 </div>
                 
                 <div class="container">
@@ -275,7 +313,7 @@
                         </div>
                         <div class="col-md-6 form-group">
                             <label class="form-label" for="pincode">Pincode</label>
-                            <input type="text" class="form-control" id="pincode" placeholder="Enter Pincode" ng-model="data.pincode" />
+                            <input type="text" class="form-control" id="pincode" placeholder="Enter Pincode" ng-model="data.pincode"  ng-pattern="/^[0-9]{6}$/" maxlength="6" />
                         </div>
                     </div>
                     <br/>
@@ -293,13 +331,9 @@
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
+                        
                     </div>
-
-                    
-                    
                 </div>
-                
-                
             </div>
         </body>
     </html>

@@ -1,7 +1,7 @@
 public  class UtilityClass {
     
     static final Integer DIGITS_PER_SET = 3;
-    static final String ZERO = 'zero';
+    static final String ZERO = 'zero'; 
     private static Map<Integer,String> tens = new Map<Integer,String> {
         20 => 'twenty',
             30 => 'thirty',

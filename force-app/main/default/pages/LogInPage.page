@@ -1,423 +1,485 @@
-<apex:page sidebar="false" showHeader="false" standardStylesheets="false" controller="LoginController">
+<apex:page sidebar="false" showHeader="false" standardStylesheets="false" controller="LoginController" >
     <html>
         <head>
             <c:Libraries />
             <style>
                 body {
-                    background: #f0f4f8; 
-                    font-family: 'Helvetica Neue', Arial, sans-serif;
-                    margin: 0;
-                    padding: 0;
-                    color: #333;
+                background: #f0f4f8; 
+                font-family: 'Helvetica Neue', Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                color: #333;
                 }
                 
                 @keyframes fadeIn {
                 from {
-                    opacity: 0;
-                    transform: translateY(-20px);
+                opacity: 0;
+                transform: translateY(-20px);
                 }
                 to {
-                    opacity: 1;
-                    transform: translateY(0);
+                opacity: 1;
+                transform: translateY(0);
                 }
-              }
-
+                }
+                
                 .btn-login {
-                    font-size: 1rem;
-                    letter-spacing: 0.05rem;
-                    padding: 0.75rem 1rem;
-                    border-radius: 30px;
-                    background-color: #007bff; /* Primary button color */
-                    border: none;
-                    color: white;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease;
+                font-size: 1rem;
+                letter-spacing: 0.05rem;
+                padding: 0.75rem 1rem;
+                border-radius: 30px;
+                background-color: #007bff; /* Primary button color */
+                border: none;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
                 }
-
+                
                 .btn-login:hover {
-                    background-color: #0056b3; /* Darker shade on hover */
+                background-color: #0056b3; /* Darker shade on hover */
                 }
-
+                
                 .form-container {
-                    margin-top: 10px;
-                    margin-bottom: 20px;
-                    max-width: 525px;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                max-width: 525px;
                 }
-
+                
                 .card {
-                    border-radius: 15px;
-                    padding: 20px;
-                    background-color: #ffffff; /* White card background */
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 15px;
+                padding: 20px;
+                background-color: #ffffff; /* White card background */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 }
-
+                
                 .form-control {
-                    border-radius: 8px;
-                    border: 1px solid #ddd;
-                    margin-bottom: 10px;
-                    padding: 10px;
-                    color: #333;
+                border-radius: 8px;
+                border: 1px solid #ddd;
+                margin-bottom: 10px;
+                padding: 10px;
+                color: #333;
                 }
-
+                
                 .col-md-12 {
-                    padding: 0 15px;
+                padding: 0 15px;
                 }
-
+                
                 .btn-secondary,
                 .btn-primary {
-                    width: 100%;
-                    font-size: 0.9rem;
-                    padding: 12px;
-                    border-radius: 20px;
-                    border: none;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease;
+                width: 100%;
+                font-size: 0.9rem;
+                padding: 12px;
+                border-radius: 20px;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
                 }
-
+                
                 .btn-secondary {
-                    background-color: #6c757d; /* Secondary button color */
-                    color: white;
+                background-color: #6c757d; /* Secondary button color */
+                color: white;
                 }
-
+                
                 .btn-secondary:hover {
-                    background-color: #5a6268; /* Darker shade on hover */
+                background-color: #5a6268; /* Darker shade on hover */
                 }
-
+                
                 .btn-primary {
-                    background-color: #007bff; /* Primary button color */
-                    color: white;
+                background-color: #007bff; /* Primary button color */
+                color: white;
                 }
-
+                
                 .btn-primary:hover {
-                    background-color: #0056b3; /* Darker shade on hover */
+                background-color: #0056b3; /* Darker shade on hover */
                 }
-
+                
                 .container {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100vh;
-                    padding: 0 15px;
-                    width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                padding: 0 15px;
+                width: 100%;
                 }
-
+                
                 .form-container {
-                    width: 100%;
-                    max-width: 525px;
-                    padding: 30px;
-                    border-radius: 10px;
-                    background-color: #ffffff;
-
+                width: 100%;
+                max-width: 525px;
+                padding: 30px;
+                border-radius: 10px;
+                background-color: #ffffff;
+                
                 }
-
+                
                 .forgot-password-link,
                 .signin-link {
-                    color: #007bff;
-                    margin-top: 20px;
-                    font-size: 1rem;
-                    display: inline-block;
-                    text-align: center;
-                    width: 100%;
-                    transition: color 0.3s ease;
+                color: #007bff;
+                margin-top: 20px;
+                font-size: 1rem;
+                display: inline-block;
+                text-align: center;
+                width: 100%;
+                transition: color 0.3s ease;
                 }
-
+                
                 .forgot-password-link:hover,
                 .signin-link:hover {
-                    color: #0056b3;
+                color: #0056b3;
                 }
-
+                
                 /* Fade-in animation for the login card */
                 @keyframes fadeIn {
-                    from {
-                        opacity: 0;
-                        transform: translateY(-20px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
+                from {
+                opacity: 0;
+                transform: translateY(-20px);
                 }
-
+                to {
+                opacity: 1;
+                transform: translateY(0);
+                }
+                }
+                
                 .card {
-                    animation: fadeIn 1s ease-in-out;
+                animation: fadeIn 1s ease-in-out;
                 }
-
+                
                 /* Hover effects for inputs and buttons */
                 .form-control:focus {
-                    border-color: #007bff;
-                    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
-                    transition: box-shadow 0.3s ease;
+                border-color: #007bff;
+                box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+                transition: box-shadow 0.3s ease;
                 }
-
+                
                 .btn-login:hover {
-                    transform: scale(1.05);
-                    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
                 }
-
+                
                 /* Floating animation for the logo */
                 @keyframes float {
-                    0%, 100% {
-                        transform: translateY(0);
-                    }
-                    50% {
-                        transform: translateY(-10px);
-                    }
+                0%, 100% {
+                transform: translateY(0);
                 }
-
+                50% {
+                transform: translateY(-10px);
+                }
+                }
+                
                 .logo {
-                    animation: float 3s ease-in-out infinite;
+                animation: float 3s ease-in-out infinite;
                 }
-
+                
                 /* Animated gradient background */
                 @keyframes gradientBackground {
-                    0% {
-                        background-position: 0% 50%;
-                    }
-                    50% {
-                        background-position: 100% 50%;
-                    }
-                    100% {
-                        background-position: 0% 50%;
-                    }
+                0% {
+                background-position: 0% 50%;
                 }
-
+                50% {
+                background-position: 100% 50%;
+                }
+                100% {
+                background-position: 0% 50%;
+                }
+                }
+                
                 body {
-                    background: linear-gradient(135deg, #007bff, #6a11cb, #34ace0);
-                    background-size: 400% 400%;
-                    animation: gradientBackground 10s ease infinite;
-                    font-family: 'Helvetica Neue', Arial, sans-serif;
-                    margin: 0;
-                    padding: 0;
-                    color: #333;
+                background: linear-gradient(135deg, #007bff, #6a11cb, #34ace0);
+                background-size: 400% 400%;
+                animation: gradientBackground 10s ease infinite;
+                font-family: 'Helvetica Neue', Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                color: #333;
                 }
-
+                
                 /* Adjusting the form container */
                 .form-container {
-                    margin-top: 10px;
-                    margin-bottom: 20px;
-                    max-width: 525px;
-                    padding: 30px;
-                    border-radius: 10px;
-                    background-color: #ffffff;
-                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+                margin-top: 10px;
+                margin-bottom: 20px;
+                max-width: 525px;
+                padding: 30px;
+                border-radius: 10px;
+                background-color: #ffffff;
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
                 }
-
+                
                 /* Button styling */
                 .btn-login {
-                    font-size: 1rem;
-                    letter-spacing: 0.05rem;
-                    padding: 0.75rem 1rem;
-                    border-radius: 30px;
-                    background-color: #007bff;
-                    border: none;
-                    color: white;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease, transform 0.3s ease;
+                font-size: 1rem;
+                letter-spacing: 0.05rem;
+                padding: 0.75rem 1rem;
+                border-radius: 30px;
+                background-color: #007bff;
+                border: none;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.3s ease;
                 }
-
+                
                 .btn-login:hover {
-                    background-color: #0056b3;
-                    transform: scale(1.05);
-                    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+                background-color: #0056b3;
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
                 }
-
+                
                 /* Secondary button styling */
                 .btn-secondary {
-                    background-color: #6c757d;
-                    color: white;
-                    border-radius: 20px;
-                    font-size: 0.9rem;
-                    padding: 12px;
-                    width: 100%;
-                    transition: background-color 0.3s ease, transform 0.3s ease;
+                background-color: #6c757d;
+                color: white;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                padding: 12px;
+                width: 100%;
+                transition: background-color 0.3s ease, transform 0.3s ease;
                 }
-
+                
                 .btn-secondary:hover {
-                    background-color: #5a6268;
-                    transform: scale(1.05);
+                background-color: #5a6268;
+                transform: scale(1.05);
                 }
-
+                
                 /* Input fields styling */
                 .form-control {
-                    border-radius: 8px;
-                    border: 1px solid #ddd;
-                    margin-bottom: 10px;
-                    padding: 10px;
-                    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+                border-radius: 8px;
+                border: 1px solid #ddd;
+                margin-bottom: 10px;
+                padding: 10px;
+                transition: box-shadow 0.3s ease, border-color 0.3s ease;
                 }
-
+                
                 .form-control:focus {
-                    border-color: #007bff;
-                    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+                border-color: #007bff;
+                box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
                 }
-
+                
                 /* Link styles */
                 .forgot-password-link,
                 .signin-link {
-                    color: #007bff;
-                    margin-top: 20px;
-                    font-size: 1rem;
-                    display: inline-block;
-                    text-align: center;
-                    width: 100%;
-                    transition: color 0.3s ease;
+                color: #007bff;
+                margin-top: 20px;
+                font-size: 1rem;
+                display: inline-block;
+                text-align: center;
+                width: 100%;
+                transition: color 0.3s ease;
                 }
-
+                
                 .forgot-password-link:hover,
                 .signin-link:hover {
-                    color: #0056b3;
+                color: #0056b3;
                 }
-
+                
                 /* Responsive styles */
                 @media (max-width: 768px) {
-                    .card {
-                        padding: 15px;
-                    }
-
-                    .btn-login {
-                        padding: 0.75rem 1.5rem;
-                    }
+                .card {
+                padding: 15px;
                 }
-
+                
+                .btn-login {
+                padding: 0.75rem 1.5rem;
+                }
+                }
+                
                 /* Navbar styles */
                 .navbar {
-                    margin-bottom: 0;
-                    background-color: #007bff;
-                    border-bottom: 1px solid #ddd;
+                margin-bottom: 0;
+                background-color: #007bff;
+                border-bottom: 1px solid #ddd;
                 }
-
+                
                 .navbar-brand {
-                    color: white;
-                    font-size: 1.5rem;
-                    font-weight: bold;
-                    transition: color 0.3s ease;
+                color: white;
+                font-size: 1.5rem;
+                font-weight: bold;
+                transition: color 0.3s ease;
                 }
-
+                
                 .navbar-brand:hover {
-                    color: #0056b3;
+                color: #0056b3;
                 }
-
-
+                
+                
                 @media (max-width: 768px) {
-                    .card {
-                        padding: 15px;
-                    }
-
-                    .btn-login {
-                        padding: 0.75rem 1.5rem;
-                    }
+                .card {
+                padding: 15px;
                 }
-
+                
+                .btn-login {
+                padding: 0.75rem 1.5rem;
+                }
+                }
+                
                 .row.center {
-                    text-align: center;
+                text-align: center;
                 }
-
+                
                 .navbar {
-                    margin-bottom: 0; 
-                    background-color: #007bff; 
-                    border-bottom: 1px solid #ddd;
+                margin-bottom: 0; 
+                background-color: #007bff; 
+                border-bottom: 1px solid #ddd;
                 }
-
+                
                 .navbar-brand {
-                    color: white;
-                    font-size: 1.5rem;
-                    font-weight: bold;
+                color: white;
+                font-size: 1.5rem;
+                font-weight: bold;
                 }
-
+                
                 .navbar-brand:hover {
-                    color: #0056b3;
+                color: #0056b3;
                 }
-
+                
                 .logo {
-                    width: 50px;
-                    height: 50px;
+                width: 50px;
+                height: 50px;
                 }
+                
+                .spinner-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(255,255,255,0.6);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                }
+                
+                .spinner {
+                width: 50px;
+                height: 50px;
+                border: 6px solid #ccc;
+                border-top: 6px solid #007bff;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+                }
+                
+                @keyframes spin {
+                100% { transform: rotate(360deg); }
+                }
+                
             </style>
-
+            
             <script>
-                 var contactObj;
-                 contactObj = {
-                "userName" : '',
-                "userPassword" : ''}
-                var app = angular.module('app', []);
-                app.controller('formController', function ($scope,$window) {
-                    $scope.loginPage = true;
+            var contactObj;
+            contactObj = { "userName" : '', "userPassword" : ''}
+            var app = angular.module('app', []);
+            app.controller('formController', function ($scope,$window) {
+                $scope.loginPage = true;
+                $scope.isForgotPassword = false;
+                $scope.data = contactObj;
+                $scope.isLoading = false;
+                
+                $scope.validateUsernameandPassword = function () {
+                    if ($scope.data.userName == null || $scope.data.userName == "") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Username is Required',
+                            text: 'Please Enter the Username'
+                        });
+                        return false;
+                    }
+                    if ($scope.data.userPassword == null || $scope.data.userPassword == "") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Password is Required',
+                            text: 'Please Enter the Password'
+                        });
+                        return false;
+                    }
+                    return true;
+                };
+                
+                $scope.forgotpass = function () {
+                    $scope.isForgotPassword = true;
+                    $scope.loginPage = false;
+                };
+                
+                $scope.backToLogin = function () {
                     $scope.isForgotPassword = false;
-                    $scope.data = contactObj;
-                    
-                    /*
-                    if (!sessionStorage.getItem('sessionId')) {
-                        debugger;
-                        $window.location.href = window.location.origin; // Redirect to login page if no session
-                    } */
-
-                    $scope.validateUsernameandPassword = function () {
-                        debugger;
-                        if ($scope.data.userName == null || $scope.data.userName == "") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Username is Required',
-                                text: 'Please Enter the Username'
-                            });
+                    $scope.loginPage = true;
+                };
+                
+                $scope.signup = function () {
+                    var contactFormUrl = window.location.origin + "/ContactForm";
+                    window.location.href = contactFormUrl;
+                };
+                
+                $scope.validateEmail = function (email) {
+                    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+                    return emailRegex.test(email);
+                };
+                
+                $scope.loginUser = function (){
+                    debugger;
+                    if ($scope.isLoading) {
+                        return; 
+                    }
+                    if (!$scope.validateUsernameandPassword()) {
+                        return;
+                    }
+                    $scope.isLoading = true;
+                    LoginController.loginUser($scope.data.userName, $scope.data.userPassword, function(result, event){
+                        $scope.isLoading = false;
+                        if (!event.status) {
+                            Swal.fire('Error', 'Something went wrong. Please try again.', 'error');
+                            $scope.$applyAsync();
                             return;
                         }
-                        if ($scope.data.userPassword == null || $scope.data.userPassword == "") {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Password is Required',
-                                text: 'Please Enter the Password'
-                            });
+                        
+                        let responseObject;
+                        try {
+                            responseObject = JSON.parse(result);
+                        } catch (e) {
+                            $scope.isLoading = false;
+                            Swal.fire('Error', 'Invalid server response.', 'error');
+                            $scope.$applyAsync();
                             return;
                         }
-                    };
-
-                    $scope.forgotpass = function () {
-                        $scope.isForgotPassword = true;
-                        $scope.loginPage = false;
-                    };
-
-                    $scope.backToLogin = function () {
-                        $scope.isForgotPassword = false;
-                        $scope.loginPage = true;
-                    };
-
-                    $scope.signin = function () {
-                        var contactFormUrl = window.location.origin + "/ContactForm";
-                        window.location.href = contactFormUrl;
-                    };
-
-                    $scope.validateEmail = function (email) {
-                        debugger;
-                        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-                        return emailRegex.test(email);
-                   };
-
-                    $scope.loginUser = function () {
-                        debugger;
-                        $scope.validateUsernameandPassword();
-                        LoginController.loginUser($scope.data.userName, $scope.data.userPassword, function (result, event) {
-                            if (event.status) {
-                                let responseObject = JSON.parse(result);
-                                if(responseObject.status === 'success') {
-                                    sessionStorage.setItem('sessionId', responseObject.hashCode);
-                                    Swal.fire('', 'Logged In Successfully', 'Success');
-                                    var newHashcode = responseObject.hashCode;
-                                    window.location.replace(window.location.origin + "/HomePageLogin?id=" + newHashcode);
-                                } else {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Oops...!',
-                                        text: 'Please Enter the Correct Username & Password!'
-                                    });
-                                }
-                            } 
-                        }, { escape: false });
-                    };
-                });
+                        if (responseObject.status === 'success') {
+                            sessionStorage.setItem('sessionId', responseObject.sessionKey);
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Login Successful',
+                                text: 'Welcome back!'
+                            });
+                            sessionStorage.setItem('sessionKey', responseObject.sessionKey);
+                            window.location.replace(window.location.origin + "/HomePageLogin?sk=" + responseObject.sessionKey);
+                            $scope.$applyAsync();
+                            return; 
+                        }
+                        let errorMessage = 'Invalid username or password. Please try again.';
+                        if (responseObject.message === 'No Record Found') {
+                            errorMessage = 'Account not found. Please sign up or check your credentials.';
+                        }
+                        if (responseObject.status === 'error') {
+                            errorMessage = 'User already logged in from another browser.';
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Login Failed',
+                                text: errorMessage
+                            });
+                            $scope.$applyAsync();
+                            return;
+                        }
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Login Failed',
+                            text: errorMessage
+                        });
+                        $scope.$applyAsync();
+                    },{ escape: false })
+                };
+            });
             </script>
         </head>
-
+        
         <body ng-app="app" ng-controller="formController">
+            <div ng-if="isLoading" class="spinner-overlay">
+                <div class="spinner"></div>
+            </div>
+            
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid justify-content-center">
                     <a class="navbar-brand">
@@ -425,11 +487,11 @@
                     </a>
                 </div>
             </nav>
-
+            
             <div class="container">
                 <div class="card col-sm-8 form-container">
                     <div class="row">
-
+                        
                         <!-- Login Page -->
                         <div ng-if="loginPage">
                             <div class="col-sm-12 slds-p-around_small p-5">
@@ -439,28 +501,34 @@
                                 <h6 class="text-center">
                                     <b style="font-family: -webkit-body; color:#333">Welcome To Dinesh Hub Portal</b>
                                 </h6>
-
+                                
                                 <div class="col-md-12 p-2">
                                     <label for="floatingInputUsername">Username</label>
                                     <input type="text" class="form-control" placeholder="Username" ng-model="data.userName"  />
                                 </div>
-
+                                
                                 <div class="col-md-12 p-2">
                                     <label for="floatingPassword">Password</label>
                                     <input type="password" class="form-control" placeholder="Password" ng-model="data.userPassword" />
                                 </div>
-
+                                
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-md-6">
                                         <a href="#" class="forgot-password-link" ng-click="forgotpass()"><strong>Forgot password?</strong></a>
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-6">
-                                        <a href="#" class="signin-link" ng-click="signin()"><strong>Sign In</strong></a>
+                                        <a href="#" class="signin-link" ng-click="signup()">Don't have an account? <strong>Sign up</strong></a>
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-sm-12 p-2">
-                                    <button class="btn btn-login fw-bold text-uppercase col-sm-12" type="submit" ng-click="loginUser()">Login</button>
+                                    <button class="btn btn-login fw-bold text-uppercase col-sm-12" ng-disabled="isLoading" type="submit" ng-click="loginUser()">
+                                        <span ng-if="!isLoading">Login</span>
+                                        
+                                        <span ng-if="isLoading">
+                                            <i class="fa fa-spinner fa-spin"></i> Logging in...
+                                        </span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -473,41 +541,25 @@
                             <div class="row">
                                 <div class="col-md-12 p-2">
                                     <label>Email Address</label>
-                                    <input  
-                                        type="email"  
-                                        class="form-control"  
-                                        placeholder="Enter your email"  
-                                        ng-model="email"  
-                                        required="required"  
-                                        name="email" 
-                                    />
-                                    <span 
-                                        ng-show="email && !validateEmail(email)" 
-                                        style="color: red; font-size: 0.9rem;">
-                                        Please enter a valid email address.
-                                    </span>
+                                    <input type="email" class="form-control" placeholder="Enter your email" ng-model="email" required="required" name="email" />
+                                    <span ng-show="email && !validateEmail(email)" style="color:red;font-size:0.9rem;">Please enter a valid email address.</span>
                                 </div>
-                        
+                                
                                 <div class="row mt-3">
                                     <div class="col-md-6">
                                         <button class="btn btn-secondary" ng-click="backToLogin()">Back to Login</button>
                                     </div>
                                     <div class="col-md-6 text-end">
-                                        <button 
-                                            class="btn btn-primary" 
-                                            ng-click="submitForgotPassword()" 
-                                            ng-disabled="!email || !validateEmail(email)">
-                                            Submit
-                                        </button>
+                                        <button  class="btn btn-primary" ng-click="submitForgotPassword()" ng-disabled="!email || !validateEmail(email)">Submit</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        
                     </div>
                 </div>
             </div>
-
+            
         </body>
     </html>
 </apex:page>

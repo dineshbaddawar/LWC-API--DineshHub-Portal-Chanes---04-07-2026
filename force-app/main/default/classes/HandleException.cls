@@ -10,7 +10,7 @@ public class HandleException extends Exception {
             Exception__c exp =   new Exception__c();
             exp.Class_Name__c = ClassName;
             exp.Method_Name__c = methodName;
-            exp.Error_Message__c = ex.getMessage();
+            exp.Error_Message__c = ex.getMessage(); 
             exp.Stack_Trace__c = ex.getStackTraceString();
             exp.Error_Line_No__c = ex.getLineNumber();
             exp.Error_Type__c = ex.getTypeName();
